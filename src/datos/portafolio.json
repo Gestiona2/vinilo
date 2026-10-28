@@ -1,0 +1,149 @@
+{
+  "eyebrow": "Portafolio audiovisual",
+  "titulo": "Trabajo que se ve.",
+  "tituloAcento": "Y se recuerda.",
+  "texto": "Una selección de producciones, campañas y exploraciones editoriales. Los fragmentos completos se comparten bajo solicitud, verificación de edad y acuerdo de confidencialidad.",
+  "nota": "Las imágenes de esta demo son referencias visuales. El material real del cliente se integra en la entrega final.",
+  "filtros": ["Todo", "Cine", "Editorial", "Campaña", "Automotriz", "Backstage"],
+  "items": [
+    {
+      "id": "noche-dorada",
+      "titulo": "Noche Dorada",
+      "categoria": "Campaña",
+      "anio": "2026",
+      "formato": "4K · 16:9",
+      "imagen": "/img/proyector.jpg",
+      "descripcion": "Campaña de lanzamiento para una casa de contenido premium. Dirección de arte, casting y producción integral.",
+      "cliente": "Cliente confidencial",
+      "creditos": "Dirección · Dirección de arte · Casting",
+      "destacado": true
+    },
+    {
+      "id": "cuerpo-editorial",
+      "titulo": "Cuerpo Editorial",
+      "categoria": "Editorial",
+      "anio": "2026",
+      "formato": "6K · 4:5",
+      "imagen": "/img/retrato-editorial.jpg",
+      "descripcion": "Serie editorial de retrato y styling para catálogo de lencería de autor.",
+      "cliente": "Marca de vestuario",
+      "creditos": "Fotografía · Styling · Retoque",
+      "destacado": true
+    },
+    {
+      "id": "neon-privado",
+      "titulo": "Neón Privado",
+      "categoria": "Cine",
+      "anio": "2025",
+      "formato": "4K · 2.39:1",
+      "imagen": "/img/neon-calle.jpg",
+      "descripcion": "Cortometraje de atmósfera nocturna. Rodaje en locación con luz práctica y cámara en mano.",
+      "cliente": "Cliente confidencial",
+      "creditos": "Dirección · Guion · Post"
+    },
+    {
+      "id": "after-hours",
+      "titulo": "After Hours",
+      "categoria": "Campaña",
+      "anio": "2025",
+      "formato": "4K · 9:16",
+      "imagen": "/img/concierto.jpg",
+      "descripcion": "Contenido vertical para redes: música, luces y una noche que no termina.",
+      "cliente": "Sello de eventos",
+      "creditos": "Producción · Cámara · Edición"
+    },
+    {
+      "id": "metal-y-piel",
+      "titulo": "Metal & Piel",
+      "categoria": "Editorial",
+      "anio": "2025",
+      "formato": "6K · 4:5",
+      "imagen": "/img/editorial-verde.jpg",
+      "descripcion": "Editorial de moda con dirección de arte en verde y negro. Una exploración de texturas y actitud.",
+      "cliente": "Marca de vestuario",
+      "creditos": "Dirección de arte · Fotografía"
+    },
+    {
+      "id": "full-wrap",
+      "titulo": "Full Wrap",
+      "categoria": "Automotriz",
+      "anio": "2026",
+      "formato": "4K · 16:9",
+      "imagen": "/img/auto-carretera.jpg",
+      "descripcion": "Registro audiovisual de instalación de vinilo integral y contenido de marca para redes.",
+      "cliente": "Estudio de wraps",
+      "creditos": "Producción · Cámara · Edición"
+    },
+    {
+      "id": "backstage-01",
+      "titulo": "Backstage 01",
+      "categoria": "Backstage",
+      "anio": "2026",
+      "formato": "Foto · 35 mm",
+      "imagen": "/img/fotografo.jpg",
+      "descripcion": "Detrás de cámara: el equipo, la luz y el proceso de una producción de tres días.",
+      "cliente": "Archivo propio",
+      "creditos": "Fotografía documental"
+    },
+    {
+      "id": "rojo-cardinal",
+      "titulo": "Rojo Cardinal",
+      "categoria": "Editorial",
+      "anio": "2024",
+      "formato": "6K · 4:5",
+      "imagen": "/img/vestido-rojo.jpg",
+      "descripcion": "Retrato editorial en rojo sobre fondo cálido. Estudio, una luz y cero ruido.",
+      "cliente": "Marca de vestuario",
+      "creditos": "Fotografía · Styling"
+    },
+    {
+      "id": "garage-sessions",
+      "titulo": "Garage Sessions",
+      "categoria": "Automotriz",
+      "anio": "2024",
+      "formato": "4K · 16:9",
+      "imagen": "/img/autos-garage.jpg",
+      "descripcion": "Serie de contenido para taller y detailing. Movimiento, reflejos y sonido real.",
+      "cliente": "Taller aliado",
+      "creditos": "Dirección · Sonido · Post"
+    },
+    {
+      "id": "retrato-azul",
+      "titulo": "Retrato Azul",
+      "categoria": "Editorial",
+      "anio": "2026",
+      "formato": "8K · 4:5",
+      "imagen": "/img/retrato-azul.jpg",
+      "descripcion": "Retrato de estudio con esquema de luz dual. Prueba de cámara para nueva temporada.",
+      "cliente": "Archivo propio",
+      "creditos": "Fotografía · Luz"
+    },
+    {
+      "id": "luz-de-proyector",
+      "titulo": "Luz de Proyector",
+      "categoria": "Cine",
+      "anio": "2023",
+      "formato": "4K · 2.39:1",
+      "imagen": "/img/proyector.jpg",
+      "descripcion": "Pieza de apertura para función privada. Proyección, humo y un solo plano secuencia.",
+      "cliente": "Cliente confidencial",
+      "creditos": "Dirección · Fotografía"
+    },
+    {
+      "id": "claqueta-01",
+      "titulo": "Claqueta 01",
+      "categoria": "Backstage",
+      "anio": "2025",
+      "formato": "Foto · Digital",
+      "imagen": "/img/claqueta.jpg",
+      "descripcion": "El inicio de todo: tablero, desierto y la primera toma del año.",
+      "cliente": "Archivo propio",
+      "creditos": "Fotografía documental"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Quieres ver el material completo?",
+    "texto": "Compartimos los fragmentos íntegros bajo solicitud, con verificación de edad y acuerdo de confidencialidad.",
+    "cta": { "texto": "Solicitar acceso", "href": "https://wa.me/573160998998?text=Hola%20MDL%20VINILOCOL%2C%20quiero%20solicitar%20acceso%20al%20portafolio%20completo." }
+  }
+}

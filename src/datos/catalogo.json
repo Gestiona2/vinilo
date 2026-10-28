@@ -1,0 +1,208 @@
+{
+  "eyebrow": "Catálogo comercial",
+  "titulo": "Todo el set,",
+  "tituloAcento": "en un solo lugar.",
+  "texto": "Equipos de filmación, vestuario, utilería, bienestar y vinilos. Alquiler, venta y mayoreo. Precios de referencia en COP; la disponibilidad se confirma por WhatsApp.",
+  "nota": "Demo comercial: los precios y el checkout son de ejemplo. La pasarela de pagos se integra en la versión de producción.",
+  "filtros": [
+    { "id": "todo", "texto": "Todo" },
+    { "id": "equipos", "texto": "Equipos" },
+    { "id": "produccion", "texto": "Producción" },
+    { "id": "vestuario", "texto": "Vestuario" },
+    { "id": "bienestar", "texto": "Bienestar" },
+    { "id": "vinilos", "texto": "Vinilos" }
+  ],
+  "productos": [
+    {
+      "id": "sony-fx6",
+      "nombre": "Sony FX6 · Kit de cine",
+      "categoria": "equipos",
+      "tipo": "Alquiler",
+      "precio": 850000,
+      "unidad": "día",
+      "imagen": "/img/equipo-camara-top.jpg",
+      "descripcion": "Cuerpo full frame con ópticas cine, baterías, monitor y soporte. Ideal para producciones de alto estándar.",
+      "detalles": ["4K hasta 120 fps", "Full frame", "Incluye 2 ópticas cine", "Monitor + baterías"],
+      "destacado": true,
+      "stock": "Disponible"
+    },
+    {
+      "id": "kit-luz-aputure",
+      "nombre": "Kit de luz · Aputure",
+      "categoria": "equipos",
+      "tipo": "Alquiler",
+      "precio": 420000,
+      "unidad": "día",
+      "imagen": "/img/consola-produccion.jpg",
+      "descripcion": "Set de iluminación LED con modificadores, trípodes y control de color. Listo para set de estudio o locación.",
+      "detalles": ["2 × 300D", "1 × 120D", "Softboxes y grids", "Control DMX"],
+      "destacado": true,
+      "stock": "Disponible"
+    },
+    {
+      "id": "dron-mavic",
+      "nombre": "Dron · Mavic 3 Pro",
+      "categoria": "equipos",
+      "tipo": "Alquiler",
+      "precio": 380000,
+      "unidad": "día",
+      "imagen": "/img/camara-lente.jpg",
+      "descripcion": "Aéreo 5.1K con triple cámara. Piloto certificado y permisos de vuelo gestionados por nosotros.",
+      "detalles": ["5.1K · 50 fps", "Triple cámara", "Piloto incluido", "3 baterías"],
+      "stock": "Disponible"
+    },
+    {
+      "id": "set-sonido",
+      "nombre": "Set de sonido · Sennheiser",
+      "categoria": "equipos",
+      "tipo": "Alquiler",
+      "precio": 180000,
+      "unidad": "día",
+      "imagen": "/img/camara-blanca.jpg",
+      "descripcion": "Lavaliers inalámbricos, grabadora y accesorios para diálogo limpio en cualquier locación.",
+      "detalles": ["2 lavaliers", "Grabadora 32 bits", "Windjammers", "Maletín rígido"],
+      "stock": "Disponible"
+    },
+    {
+      "id": "produccion-video",
+      "nombre": "Producción de video premium",
+      "categoria": "produccion",
+      "tipo": "Paquete",
+      "precio": 4500000,
+      "unidad": "desde",
+      "imagen": "/img/proyector.jpg",
+      "descripcion": "Concepto, dirección, equipo de cine, casting y post. Una pieza principal + versiones para redes.",
+      "detalles": ["1 día de rodaje", "Equipo completo", "Edición y color", "3 versiones verticales"],
+      "destacado": true,
+      "stock": "A medida"
+    },
+    {
+      "id": "campana-editorial",
+      "nombre": "Campaña editorial de marca",
+      "categoria": "produccion",
+      "tipo": "Paquete",
+      "precio": 7200000,
+      "unidad": "desde",
+      "imagen": "/img/fotografo.jpg",
+      "descripcion": "Dirección de arte, styling, fotografía y video para lanzamiento de colección o producto.",
+      "detalles": ["2 días de producción", "Dirección de arte", "Fotografía + video", "Retoque premium"],
+      "stock": "A medida"
+    },
+    {
+      "id": "editorial-foto",
+      "nombre": "Sesión editorial + retoque",
+      "categoria": "produccion",
+      "tipo": "Paquete",
+      "precio": 2800000,
+      "unidad": "desde",
+      "imagen": "/img/retrato-editorial.jpg",
+      "descripcion": "Media jornada de estudio, dirección de posing y entrega retocada en alta resolución.",
+      "detalles": ["4 horas de estudio", "20 fotos finales", "Retoque high-end", "Uso comercial"],
+      "stock": "A medida"
+    },
+    {
+      "id": "set-lenceria",
+      "nombre": "Set de lencería editorial",
+      "categoria": "vestuario",
+      "tipo": "Venta",
+      "precio": 320000,
+      "unidad": "set",
+      "imagen": "/img/vestuario-rack.jpg",
+      "descripcion": "Set de dos piezas en encaje y satín, seleccionado para producción editorial. Tallas S–XL.",
+      "detalles": ["Encaje y satín", "Tallas S–XL", "Nuevo con etiqueta", "Empaque neutro"],
+      "destacado": true,
+      "stock": "Últimas unidades",
+      "adulto": true
+    },
+    {
+      "id": "disfraz-tematico",
+      "nombre": "Disfraz temático premium",
+      "categoria": "vestuario",
+      "tipo": "Venta",
+      "precio": 480000,
+      "unidad": "unidad",
+      "imagen": "/img/editorial-amarillo.jpg",
+      "descripcion": "Pieza de temporada con acabados de producción. Disponible en tallas S–L y versiones a medida.",
+      "detalles": ["Confección reforzada", "Tallas S–L", "Accesorios incluidos", "Versión a medida"],
+      "stock": "Disponible",
+      "adulto": true
+    },
+    {
+      "id": "kit-styling",
+      "nombre": "Kit de styling y utilería",
+      "categoria": "vestuario",
+      "tipo": "Alquiler",
+      "precio": 260000,
+      "unidad": "día",
+      "imagen": "/img/maquillaje.jpg",
+      "descripcion": "Utilería, accesorios y piezas de arte para set. Curado por nuestra dirección de arte.",
+      "detalles": ["30+ piezas", "Accesorios", "Selección por moodboard", "Entrega en maletín"],
+      "stock": "Disponible"
+    },
+    {
+      "id": "set-bienestar",
+      "nombre": "Set de bienestar premium",
+      "categoria": "bienestar",
+      "tipo": "Venta",
+      "precio": 210000,
+      "unidad": "set",
+      "imagen": "",
+      "descripcion": "Selección de bienestar y cuidado personal en empaque discreto. Productos sellados y de marcas verificadas.",
+      "detalles": ["Empaque discreto", "Productos sellados", "Marcas verificadas", "Guía de uso"],
+      "stock": "Disponible",
+      "adulto": true
+    },
+    {
+      "id": "aceites-cuidado",
+      "nombre": "Aceites y cuidado íntimo",
+      "categoria": "bienestar",
+      "tipo": "Venta",
+      "precio": 95000,
+      "unidad": "kit",
+      "imagen": "",
+      "descripcion": "Kit de aceites corporales y cuidado íntimo, apto para piel sensible. Envío nacional discreto.",
+      "detalles": ["Apto piel sensible", "3 productos", "Envío discreto", "Uso externo"],
+      "stock": "Disponible",
+      "adulto": true
+    },
+    {
+      "id": "vinilo-premium",
+      "nombre": "Vinilo automotriz premium",
+      "categoria": "vinilos",
+      "tipo": "Servicio",
+      "precio": 1900000,
+      "unidad": "desde",
+      "imagen": "/img/auto-carretera.jpg",
+      "descripcion": "Instalación de vinilo de alto desempeño con acabado mate, satinado o gloss. Diseño incluido.",
+      "detalles": ["Vinilo cast premium", "Diseño incluido", "Garantía 3 años", "Acabado a elección"],
+      "stock": "Agenda abierta"
+    },
+    {
+      "id": "wrap-integral",
+      "nombre": "Wrap integral + contenido",
+      "categoria": "vinilos",
+      "tipo": "Servicio",
+      "precio": 4800000,
+      "unidad": "desde",
+      "imagen": "/img/autos-garage.jpg",
+      "descripcion": "Wrap completo del vehículo más registro audiovisual del proceso para tus redes.",
+      "detalles": ["Cobertura total", "Registro 4K", "3 reels editados", "Fotografía del proceso"],
+      "destacado": true,
+      "stock": "Agenda abierta"
+    }
+  ],
+  "cierre": {
+    "titulo": "¿Necesitas algo a medida?",
+    "texto": "Armamos paquetes de equipos, vestuario y producción para proyectos completos. También atendemos compras al por mayor.",
+    "cta": {
+      "texto": "Armar un paquete",
+      "href": "https://wa.me/573160998998?text=Hola%20MDL%20VINILOCOL%2C%20necesito%20armar%20un%20paquete%20a%20medida."
+    }
+  },
+  "pagos": [
+    { "id": "wompi", "nombre": "Wompi / Bold", "detalle": "Tarjetas, PSE y Nequi", "icono": "credit-card" },
+    { "id": "paypal", "nombre": "PayPal", "detalle": "Pagos internacionales", "icono": "globe" },
+    { "id": "usdt", "nombre": "USDT", "detalle": "Cripto · red TRC20", "icono": "bitcoin" },
+    { "id": "transferencia", "nombre": "Transferencia", "detalle": "Bancolombia · previa confirmación", "icono": "landmark" }
+  ]
+}

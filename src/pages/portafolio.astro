@@ -1,0 +1,235 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { conBase, enlace } from "../lib/ruta";
+import dataBase from "../datos/portafolio.json";
+
+const data = conBase(dataBase);
+const { items, filtros, cierre } = data;
+---
+
+<Layout
+  activa="portafolio"
+  titulo="Portafolio audiovisual — MDL VINILOCOL"
+  descripcion="Producciones, campañas y editoriales de MDL Vinilocol. Cine, moda, automotriz y backstage con estándar cinematográfico."
+  imagen="/img/neon-calle.jpg"
+>
+  <section class="cab-pagina">
+    <div class="container">
+      <div class="migas">
+        <a href={enlace("/")}>Inicio</a> <span>/</span> <span>Portafolio</span>
+      </div>
+      <div class="cab-fila">
+        <div class="up">
+          <p class="eyebrow">{data.eyebrow}</p>
+          <h1>
+            {data.titulo}<br />
+            <span class="serif oro-texto">{data.tituloAcento}</span>
+          </h1>
+        </div>
+        <div class="cab-lado up" style="transition-delay:120ms">
+          <p class="texto-lead" style="font-size:.95rem;">{data.texto}</p>
+          <div class="cab-datos">
+            <span><b>{items.length}</b> piezas</span>
+            <span><b>6</b> categorías</span>
+            <span><b>4K+</b> estándar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion-sm">
+    <div class="container">
+      <div class="barra-filtros">
+        <div class="filtros" role="group" aria-label="Filtrar portafolio">
+          {filtros.map((f, i) => (
+            <button class={`filtro ${i === 0 ? "activo" : ""}`} data-filtro={f} aria-pressed={i === 0 ? "true" : "false"}>
+              {f}
+            </button>
+          ))}
+        </div>
+        <span class="conteo" id="conteoObras">{items.length} piezas</span>
+      </div>
+
+      <div class="obras-grid portafolio-completo" id="grillaObras" data-stagger>
+        {items.map((obra, i) => (
+          <button
+            class="obra up"
+            data-id={obra.id}
+            data-categoria={obra.categoria}
+            id={obra.id}
+            aria-label={`Ver ficha de ${obra.titulo}`}
+          >
+            <img src={obra.imagen} alt={`${obra.titulo} — ${obra.categoria}`} loading={i < 4 ? "eager" : "lazy"} />
+            <span class="obra-num">{String(i + 1).padStart(2, "0")}</span>
+            <span class="obra-play"><Icon name="play" size={15} /></span>
+            <div class="obra-meta">
+              <div>
+                <span class="cat">{obra.categoria}</span>
+                <h2>{obra.titulo}</h2>
+              </div>
+              <span class="anio">{obra.anio}</span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <p class="nota-demo">
+        <Icon name="clock" size={14} /> {data.nota}
+      </p>
+    </div>
+  </section>
+
+  <section class="cierre">
+    <div class="container">
+      <h2 class="up">
+        {cierre.titulo.replace("?", "")}<span class="serif oro-texto">?</span>
+      </h2>
+      <p class="up">{cierre.texto}</p>
+      <div class="acciones up">
+        <a href={cierre.cta.href} target="_blank" rel="noopener" class="btn btn-oro btn-grande">
+          {cierre.cta.texto} <Icon name="message-circle" size={16} />
+        </a>
+        <a href={enlace("/contacto/")} class="btn btn-borde btn-grande">
+          Formulario de contacto <Icon name="arrow-up-right" size={15} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visor de obra -->
+  <div class="velo" id="veloVisor"></div>
+  <div class="visor" id="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitulo">
+    <div class="visor-caja">
+      <button class="visor-cerrar" id="cerrarVisor" aria-label="Cerrar ficha">
+        <Icon name="x" size={18} />
+      </button>
+      <div class="visor-media">
+        <img src="" alt="" id="visorImagen" />
+      </div>
+      <div class="visor-info">
+        <span class="cat" id="visorCategoria"></span>
+        <h2 id="visorTitulo"></h2>
+        <p id="visorDescripcion"></p>
+        <dl class="ficha visor-meta">
+          <div class="ficha-fila"><dt>Año</dt><dd id="visorAnio"></dd></div>
+          <div class="ficha-fila"><dt>Formato</dt><dd id="visorFormato"></dd></div>
+          <div class="ficha-fila"><dt>Cliente</dt><dd id="visorCliente"></dd></div>
+          <div class="ficha-fila"><dt>Créditos</dt><dd id="visorCreditos"></dd></div>
+        </dl>
+        <a href="#" target="_blank" rel="noopener" class="btn btn-oro" style="margin-top:26px;" id="visorSolicitar">
+          Solicitar acceso <Icon name="message-circle" size={15} />
+        </a>
+        <p style="font-size:.66rem;color:var(--texto-mudo);margin-top:14px;margin-bottom:0;">
+          Material completo bajo verificación de edad y acuerdo de confidencialidad.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" id="datosPortafolio" set:html={JSON.stringify(items)}></script>
+
+  <script>
+    const datos = JSON.parse(document.getElementById("datosPortafolio")?.textContent || "[]");
+    const grilla = document.getElementById("grillaObras");
+    const botonesFiltro = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-filtro]"));
+    const conteo = document.getElementById("conteoObras");
+
+    botonesFiltro.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const filtro = btn.dataset.filtro || "Todo";
+        botonesFiltro.forEach((b) => {
+          const activo = b === btn;
+          b.classList.toggle("activo", activo);
+          b.setAttribute("aria-pressed", String(activo));
+        });
+        let visibles = 0;
+        grilla?.querySelectorAll<HTMLElement>(".obra").forEach((card) => {
+          const coincide = filtro === "Todo" || card.dataset.categoria === filtro;
+          card.style.display = coincide ? "" : "none";
+          if (coincide) visibles++;
+        });
+        if (conteo) conteo.textContent = `${visibles} ${visibles === 1 ? "pieza" : "piezas"}`;
+      });
+    });
+
+    const visor = document.getElementById("visor");
+    const velo = document.getElementById("veloVisor");
+    const imagen = document.getElementById("visorImagen") as HTMLImageElement | null;
+    const titulo = document.getElementById("visorTitulo");
+    const categoria = document.getElementById("visorCategoria");
+    const descripcion = document.getElementById("visorDescripcion");
+    const anio = document.getElementById("visorAnio");
+    const formato = document.getElementById("visorFormato");
+    const cliente = document.getElementById("visorCliente");
+    const creditos = document.getElementById("visorCreditos");
+    const solicitar = document.getElementById("visorSolicitar") as HTMLAnchorElement | null;
+    const cerrar = document.getElementById("cerrarVisor");
+
+    function abrir(id: string) {
+      const obra = datos.find((o: any) => o.id === id);
+      if (!obra) return;
+      if (imagen) { imagen.src = obra.imagen; imagen.alt = obra.titulo; }
+      if (titulo) titulo.textContent = obra.titulo;
+      if (categoria) categoria.textContent = obra.categoria;
+      if (descripcion) descripcion.textContent = obra.descripcion;
+      if (anio) anio.textContent = obra.anio;
+      if (formato) formato.textContent = obra.formato;
+      if (cliente) cliente.textContent = obra.cliente;
+      if (creditos) creditos.textContent = obra.creditos;
+      if (solicitar) {
+        solicitar.href = `https://wa.me/573160998998?text=${encodeURIComponent(
+          `Hola MDL VINILOCOL, quiero solicitar acceso a la pieza "${obra.titulo}".`
+        )}`;
+      }
+      visor?.classList.add("abierto");
+      velo?.classList.add("visible");
+      document.body.style.overflow = "hidden";
+    }
+
+    function cerrarVisor() {
+      visor?.classList.remove("abierto");
+      velo?.classList.remove("visible");
+      document.body.style.overflow = "";
+    }
+
+    grilla?.querySelectorAll<HTMLElement>(".obra").forEach((card) => {
+      card.addEventListener("click", () => abrir(card.dataset.id || ""));
+    });
+    cerrar?.addEventListener("click", cerrarVisor);
+    velo?.addEventListener("click", cerrarVisor);
+    visor?.addEventListener("click", (e) => { if (e.target === visor) cerrarVisor(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") cerrarVisor(); });
+  </script>
+
+  <style>
+    .barra-filtros { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 34px; }
+    .conteo { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--texto-mudo); }
+    .cab-datos { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--linea); }
+    .cab-datos span { font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--texto-mudo); }
+    .cab-datos b { display: block; font-family: var(--font-display); font-size: 1.2rem; letter-spacing: -.02em; color: var(--oro-claro); margin-bottom: 2px; }
+
+    .portafolio-completo { grid-auto-flow: dense; }
+    .portafolio-completo .obra { grid-column: span 4; aspect-ratio: 4/3.4; scroll-margin-top: calc(var(--nav-alto) + 30px); padding: 0; cursor: pointer; }
+    .portafolio-completo .obra:nth-child(1) { grid-column: span 8; aspect-ratio: 16/9.6; }
+    .portafolio-completo .obra:nth-child(2) { grid-column: span 4; aspect-ratio: 4/4.1; }
+    .portafolio-completo .obra:nth-child(6) { grid-column: span 8; aspect-ratio: 16/9.6; }
+    .portafolio-completo .obra:nth-child(10) { grid-column: span 7; }
+    .portafolio-completo .obra:nth-child(11) { grid-column: span 5; }
+
+    .nota-demo {
+      display: flex; align-items: flex-start; gap: 8px; margin-top: 30px;
+      font-size: .68rem; color: var(--texto-mudo); max-width: 70ch;
+    }
+    .nota-demo :global(svg) { margin-top: 2px; flex: none; color: var(--oro); }
+
+    @media (max-width: 860px) {
+      .portafolio-completo .obra, .portafolio-completo .obra:nth-child(1),
+      .portafolio-completo .obra:nth-child(2), .portafolio-completo .obra:nth-child(6),
+      .portafolio-completo .obra:nth-child(10), .portafolio-completo .obra:nth-child(11) {
+        grid-column: span 12; aspect-ratio: 4/3.2;
+      }
+    }
+  </style>
+</Layout>

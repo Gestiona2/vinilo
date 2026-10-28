@@ -1,0 +1,358 @@
+{
+  "hero": {
+    "eyebrow": "Productora audiovisual · Bogotá → Global",
+    "titulo": [
+      "Creamos",
+      "contenido",
+      "que se siente."
+    ],
+    "texto": "Producción, distribución y comercialización para la industria del entretenimiento para adultos. Estándar cinematográfico, mirada editorial y una red de aliados que no conoce fronteras.",
+    "ctaPrincipal": {
+      "texto": "Ver portafolio",
+      "href": "/portafolio/"
+    },
+    "ctaSecundario": {
+      "texto": "Cotizar un proyecto",
+      "href": "/contacto/"
+    },
+    "imagenFondo": "/img/proyector.jpg",
+    "imagenReel": "/img/retrato-editorial.jpg",
+    "imagenReel2": "/img/retrato-azul.jpg",
+    "reelEtiqueta": "Reel 2026",
+    "reelNota": "Producción original · 4K",
+    "stats": [
+      {
+        "valor": 29.4,
+        "sufijo": "K",
+        "decimales": 1,
+        "etiqueta": "Comunidad"
+      },
+      {
+        "valor": 120,
+        "sufijo": "+",
+        "etiqueta": "Producciones"
+      },
+      {
+        "valor": 12,
+        "sufijo": "",
+        "etiqueta": "Países"
+      },
+      {
+        "valor": 3,
+        "sufijo": "",
+        "etiqueta": "Líneas de negocio"
+      }
+    ]
+  },
+  "marquesina": [
+    "Producción",
+    "Fotografía",
+    "Casting",
+    "Dirección de arte",
+    "Edición",
+    "Distribución",
+    "Equipos",
+    "Vestuario",
+    "Vinilos",
+    "Contenido premium"
+  ],
+  "productora": {
+    "eyebrow": "01 — La productora",
+    "titulo": "No vendemos vistas.",
+    "tituloAcento": "Construimos deseo.",
+    "texto": "MDL Vinilo Colombia es una compañía integral dedicada al entretenimiento para adultos. Operamos como productora, distribuidora y proveedor de todo el ecosistema: desde la idea y el set hasta el equipo, el vestuario y el wrap que lleva tu marca a la calle.",
+    "texto2": "Trabajamos con estándares de cine en cada formato. Sets seguros, contratos claros y una dirección de arte que entiende que lo sugerente vende más que lo obvio.",
+    "imagenPrincipal": "/img/claqueta.jpg",
+    "imagenSecundaria": "/img/consola-produccion.jpg",
+    "sello": "Est. 2019 · Bogotá",
+    "capacidades": [
+      {
+        "numero": "01",
+        "titulo": "Producción end-to-end",
+        "texto": "Desarrollo, casting, dirección, rodaje, post y entrega. Un solo equipo, un solo estándar."
+      },
+      {
+        "numero": "02",
+        "titulo": "Distribución global",
+        "texto": "Colocamos contenido en plataformas, canales y territorios con acuerdos claros y trazables."
+      },
+      {
+        "numero": "03",
+        "titulo": "Equipos y comercio",
+        "texto": "Cámaras, luz, sonido, vestuario y vinilos. Alquiler, venta y mayoreo para la industria."
+      }
+    ],
+    "cifras": [
+      {
+        "valor": "4K",
+        "etiqueta": "Estándar mínimo"
+      },
+      {
+        "valor": "48 h",
+        "etiqueta": "Primer corte"
+      },
+      {
+        "valor": "100%",
+        "etiqueta": "Confidencialidad"
+      }
+    ]
+  },
+  "portafolio": {
+    "eyebrow": "02 — Portafolio",
+    "titulo": "Trabajo que se ve.",
+    "tituloAcento": "Y se recuerda.",
+    "texto": "Una selección de producciones, campañas y exploraciones editoriales. Los fragmentos completos se comparten bajo solicitud y verificación de edad.",
+    "items": [
+      {
+        "id": "noche-dorada",
+        "titulo": "Noche Dorada",
+        "categoria": "Campaña",
+        "anio": "2026",
+        "formato": "4K · 16:9",
+        "imagen": "/img/proyector.jpg",
+        "descripcion": "Campaña de lanzamiento para una casa de contenido premium. Dirección de arte, casting y producción integral.",
+        "cliente": "Cliente confidencial",
+        "destacado": true
+      },
+      {
+        "id": "cuerpo-editorial",
+        "titulo": "Cuerpo Editorial",
+        "categoria": "Editorial",
+        "anio": "2026",
+        "formato": "6K · 4:5",
+        "imagen": "/img/retrato-editorial.jpg",
+        "descripcion": "Serie editorial de retrato y styling para catálogo de lencería de autor.",
+        "cliente": "Marca de vestuario",
+        "destacado": true
+      },
+      {
+        "id": "neon-privado",
+        "titulo": "Neón Privado",
+        "categoria": "Cine",
+        "anio": "2025",
+        "formato": "4K · 2.39:1",
+        "imagen": "/img/neon-calle.jpg",
+        "descripcion": "Cortometraje de atmósfera nocturna. Rodaje en locación con luz práctica y cámara en mano.",
+        "cliente": "Cliente confidencial"
+      },
+      {
+        "id": "after-hours",
+        "titulo": "After Hours",
+        "categoria": "Campaña",
+        "anio": "2025",
+        "formato": "4K · 9:16",
+        "imagen": "/img/concierto.jpg",
+        "descripcion": "Contenido vertical para redes: música, luces y una noche que no termina.",
+        "cliente": "Sello de eventos"
+      },
+      {
+        "id": "metal-y-piel",
+        "titulo": "Metal & Piel",
+        "categoria": "Editorial",
+        "anio": "2025",
+        "formato": "6K · 4:5",
+        "imagen": "/img/editorial-verde.jpg",
+        "descripcion": "Editorial de moda con dirección de arte en verde y negro. Una exploración de texturas y actitud.",
+        "cliente": "Marca de vestuario"
+      },
+      {
+        "id": "full-wrap",
+        "titulo": "Full Wrap",
+        "categoria": "Automotriz",
+        "anio": "2026",
+        "formato": "4K · 16:9",
+        "imagen": "/img/auto-carretera.jpg",
+        "descripcion": "Registro audiovisual de instalación de vinilo integral y contenido de marca para redes.",
+        "cliente": "Estudio de wraps"
+      },
+      {
+        "id": "backstage-01",
+        "titulo": "Backstage 01",
+        "categoria": "Backstage",
+        "anio": "2026",
+        "formato": "Foto · 35 mm",
+        "imagen": "/img/fotografo.jpg",
+        "descripcion": "Detrás de cámara: el equipo, la luz y el proceso de una producción de tres días.",
+        "cliente": "Archivo propio"
+      },
+      {
+        "id": "rojo-cardinal",
+        "titulo": "Rojo Cardinal",
+        "categoria": "Editorial",
+        "anio": "2024",
+        "formato": "6K · 4:5",
+        "imagen": "/img/vestido-rojo.jpg",
+        "descripcion": "Retrato editorial en rojo sobre fondo cálido. Estudio, una luz y cero ruido.",
+        "cliente": "Marca de vestuario"
+      },
+      {
+        "id": "garage-sessions",
+        "titulo": "Garage Sessions",
+        "categoria": "Automotriz",
+        "anio": "2024",
+        "formato": "4K · 16:9",
+        "imagen": "/img/autos-garage.jpg",
+        "descripcion": "Serie de contenido para taller y detailing. Movimiento, reflejos y sonido real.",
+        "cliente": "Taller aliado"
+      },
+      {
+        "id": "retrato-azul",
+        "titulo": "Retrato Azul",
+        "categoria": "Editorial",
+        "anio": "2026",
+        "formato": "8K · 4:5",
+        "imagen": "/img/retrato-azul.jpg",
+        "descripcion": "Retrato de estudio con esquema de luz dual. Prueba de cámara para nueva temporada.",
+        "cliente": "Archivo propio"
+      },
+      {
+        "id": "luz-de-proyector",
+        "titulo": "Luz de Proyector",
+        "categoria": "Cine",
+        "anio": "2023",
+        "formato": "4K · 2.39:1",
+        "imagen": "/img/proyector.jpg",
+        "descripcion": "Pieza de apertura para función privada. Proyección, humo y un solo plano secuencia.",
+        "cliente": "Cliente confidencial"
+      },
+      {
+        "id": "claqueta-01",
+        "titulo": "Claqueta 01",
+        "categoria": "Backstage",
+        "anio": "2025",
+        "formato": "Foto · Digital",
+        "imagen": "/img/claqueta.jpg",
+        "descripcion": "El inicio de todo: tablero, desierto y la primera toma del año.",
+        "cliente": "Archivo propio"
+      }
+    ]
+  },
+  "lineas": {
+    "eyebrow": "03 — Para quién trabajamos",
+    "titulo": "Tres puertas.",
+    "tituloAcento": "Una misma obsesión.",
+    "items": [
+      {
+        "numero": "01",
+        "titulo": "Marcas y clientes",
+        "texto": "Contenido a medida, campañas y piezas editoriales con dirección de arte propia. Del concepto a la entrega final.",
+        "cta": {
+          "texto": "Ver servicios",
+          "href": "/productora/"
+        },
+        "imagen": "/img/retrato-editorial.jpg"
+      },
+      {
+        "numero": "02",
+        "titulo": "Aliados B2B",
+        "texto": "Coproducción, distribución de contenido y comercio de productos al por mayor. Acuerdos claros, alcance global.",
+        "cta": {
+          "texto": "Hablar de negocios",
+          "href": "/contacto/?tipo=b2b"
+        },
+        "imagen": "/img/reunion-b2b.jpg"
+      },
+      {
+        "numero": "03",
+        "titulo": "Nuevos talentos",
+        "texto": "Un espacio seguro, profesional y confidencial para modelos y creadores que quieren crecer con estándar.",
+        "cta": {
+          "texto": "Aplicar al casting",
+          "href": "/talento/"
+        },
+        "imagen": "/img/retrato-azul.jpg"
+      }
+    ]
+  },
+  "catalogo": {
+    "eyebrow": "04 — Catálogo",
+    "titulo": "Todo el set,",
+    "tituloAcento": "en un solo lugar.",
+    "texto": "Equipos de filmación, vestuario, utilería, bienestar y vinilos. Alquiler, venta y mayoreo con disponibilidad real.",
+    "cta": {
+      "texto": "Explorar catálogo",
+      "href": "/catalogo/"
+    },
+    "destacados": [
+      "sony-fx6",
+      "kit-luz-aputure",
+      "set-lenceria",
+      "wrap-integral"
+    ]
+  },
+  "b2b": {
+    "eyebrow": "Alianzas",
+    "titulo": "¿Coproduces, distribuyes o compras al por mayor?",
+    "texto": "Tenemos la infraestructura, el catálogo y la red. Tú pones el mercado. Armemos un acuerdo que funcione para los dos.",
+    "cta": {
+      "texto": "Abrir conversación B2B",
+      "href": "/contacto/?tipo=b2b"
+    },
+    "datos": [
+      "Coproducción",
+      "Distribución",
+      "Mayoreo",
+      "Licencias"
+    ]
+  },
+  "talento": {
+    "eyebrow": "05 — Talento",
+    "titulo": "Tu imagen.",
+    "tituloAcento": "Nuestro estándar.",
+    "texto": "Buscamos modelos y creadores con presencia, disciplina y ganas de construir una carrera. Nosotros ponemos el set, la dirección y la protección legal.",
+    "imagen": "/img/editorial-amarillo.jpg",
+    "beneficios": [
+      "Pago justo y puntual",
+      "Sets seguros y privados",
+      "Contrato y consentimiento claros",
+      "Dirección de imagen",
+      "Distribución internacional",
+      "Confidencialidad total"
+    ],
+    "cta": {
+      "texto": "Quiero aplicar",
+      "href": "/talento/"
+    }
+  },
+  "proceso": {
+    "eyebrow": "Cómo trabajamos",
+    "titulo": "Menos ruido.",
+    "tituloAcento": "Más intención.",
+    "pasos": [
+      {
+        "numero": "01",
+        "titulo": "Conversación",
+        "texto": "Entendemos el objetivo, la audiencia y el límite de cada proyecto."
+      },
+      {
+        "numero": "02",
+        "titulo": "Concepto",
+        "texto": "Moodboard, guion, casting y plan de producción. Todo aprobado antes de rodar."
+      },
+      {
+        "numero": "03",
+        "titulo": "Rodaje",
+        "texto": "Set seguro, equipo de cine y dirección de arte en cada plano."
+      },
+      {
+        "numero": "04",
+        "titulo": "Entrega",
+        "texto": "Post, versiones por plataforma y distribución cuando aplica."
+      }
+    ]
+  },
+  "cierre": {
+    "eyebrow": "Siguiente paso",
+    "titulo": "Hablemos de tu",
+    "tituloAcento": "próximo proyecto.",
+    "texto": "Cuéntanos qué tienes en mente. Respondemos en menos de 24 horas hábiles.",
+    "cta": {
+      "texto": "Escribir por WhatsApp",
+      "href": "https://wa.me/573160998998?text=Hola%20MDL%20VINILOCOL%2C%20quiero%20hablar%20de%20un%20proyecto."
+    },
+    "ctaSecundario": {
+      "texto": "Formulario de contacto",
+      "href": "/contacto/"
+    }
+  }
+}

@@ -1,0 +1,261 @@
+---
+/**
+ * Layout base. La cabecera, el pie, el portón +18 y los scripts globales
+ * viven aquí. El contenido de cada página se escribe en src/datos/.
+ */
+import "../styles/global.css";
+import sitioBase from "../datos/sitio.json";
+import { conBase, ruta } from "../lib/ruta";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import AgeGate from "../components/AgeGate.astro";
+import Icon from "../components/Icon.astro";
+
+const sitio = conBase(sitioBase);
+
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+  activa?: string;
+  imagen?: string;
+  noIndex?: boolean;
+}
+const {
+  titulo = "MDL Vinilocol — Productora audiovisual y contenido premium",
+  descripcion = sitio.descripcion,
+  activa = "",
+  imagen = "/brand/logo-completo.jpg",
+  noIndex = false,
+} = Astro.props;
+
+const anio = new Date().getFullYear();
+const origen = (Astro.site ?? new URL(sitio.dominio)).toString().replace(/\/$/, "");
+const url = new URL(Astro.url.pathname, origen).href;
+const ogImagen = new URL(ruta(imagen), origen).href;
+---
+
+<!doctype html>
+<html lang="es-CO">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={url} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#070606" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href={ruta("/brand/icono.png")} sizes="256x256" />
+    <link rel="apple-touch-icon" href={ruta("/brand/icono.png")} />
+
+    <link rel="preload" href={ruta("/fonts/titulos.woff2")} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={ruta("/fonts/cuerpo.woff2")} as="font" type="font/woff2" crossorigin />
+
+    <meta property="og:site_name" content={sitio.nombre} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={ogImagen} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={titulo} />
+    <meta name="twitter:description" content={descripcion} />
+    <meta name="twitter:image" content={ogImagen} />
+
+    <script is:inline>
+      (function () {
+        try {
+          if (sessionStorage.getItem("mdl-edad") === "ok") {
+            document.documentElement.setAttribute("data-edad", "ok");
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: sitio.razonSocial,
+      alternateName: sitio.nombre,
+      url: new URL(ruta("/"), origen).href,
+      logo: new URL(ruta("/brand/logo.png"), origen).href,
+      description: sitio.descripcion,
+      foundingDate: sitio.fundada,
+      telephone: sitio.telefono,
+      email: sitio.correo,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Bogotá",
+        addressCountry: "CO",
+      },
+      sameAs: sitio.redes.map((r) => r.href),
+      knowsAbout: [
+        "Producción audiovisual",
+        "Contenido para adultos",
+        "Distribución de contenido",
+        "Equipos de filmación",
+        "Vinilos automotrices",
+      ],
+    })} />
+  </head>
+
+  <body>
+    <a href="#contenido" class="salto-contenido">Saltar al contenido</a>
+    <div class="progreso" aria-hidden="true"><i id="barraProgreso"></i></div>
+
+    <AgeGate />
+    <Nav activa={activa} />
+
+    <main id="contenido">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <a
+      href={sitio.ctaPrincipal.href}
+      class="flotante-wa"
+      target="_blank"
+      rel="noopener"
+      aria-label="Escribir por WhatsApp"
+    >
+      <Icon name="message-circle" size={23} />
+    </a>
+
+    <script>
+      /* ---------- Cabecera al hacer scroll ---------- */
+      const nav = document.getElementById("nav");
+      const barra = document.getElementById("barraProgreso");
+      let tick = false;
+
+      function alScroll() {
+        const y = window.scrollY;
+        nav?.classList.toggle("bajado", y > 24);
+        if (barra) {
+          const alto = document.documentElement.scrollHeight - window.innerHeight;
+          barra.style.transform = `scaleX(${alto > 0 ? Math.min(y / alto, 1) : 0})`;
+        }
+        tick = false;
+      }
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (!tick) {
+            tick = true;
+            requestAnimationFrame(alScroll);
+          }
+        },
+        { passive: true }
+      );
+      alScroll();
+
+      /* ---------- Menú móvil ---------- */
+      const boton = document.getElementById("botonMenu");
+      const menu = document.getElementById("menuMovil");
+
+      function abrirMenu(abrir: boolean) {
+        if (!menu || !boton) return;
+        menu.classList.toggle("abierto", abrir);
+        menu.setAttribute("aria-hidden", String(!abrir));
+        boton.setAttribute("aria-expanded", String(abrir));
+        boton.innerHTML = abrir
+          ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>'
+          : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>';
+        document.body.style.overflow = abrir ? "hidden" : "";
+      }
+
+      boton?.addEventListener("click", () => {
+        abrirMenu(!menu?.classList.contains("abierto"));
+      });
+      menu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => abrirMenu(false)));
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") abrirMenu(false);
+      });
+      window.matchMedia("(min-width: 961px)").addEventListener("change", (e) => {
+        if (e.matches) abrirMenu(false);
+      });
+
+      /* ---------- Apariciones al bajar ---------- */
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const elementos = document.querySelectorAll<HTMLElement>(".up, .izq, .der, .zoom");
+
+      if (reduce) {
+        elementos.forEach((el) => el.classList.add("visible"));
+      } else {
+        const observador = new IntersectionObserver(
+          (entradas) => {
+            entradas.forEach((entrada) => {
+              if (!entrada.isIntersecting) return;
+              const el = entrada.target as HTMLElement;
+              const padre = el.parentElement;
+              if (padre?.hasAttribute("data-stagger")) {
+                const hermanos = Array.from(padre.children).filter((h) =>
+                  h.classList.contains("up") ||
+                  h.classList.contains("izq") ||
+                  h.classList.contains("der") ||
+                  h.classList.contains("zoom")
+                );
+                const indice = hermanos.indexOf(el);
+                el.style.transitionDelay = `${Math.min(indice, 8) * 90}ms`;
+              }
+              el.classList.add("visible");
+              observador.unobserve(el);
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -50px 0px" }
+        );
+        elementos.forEach((el) => observador.observe(el));
+      }
+
+      /* ---------- Contadores ---------- */
+      const formateador = new Intl.NumberFormat("es-CO");
+      function animar(el: HTMLElement) {
+        const destino = parseFloat(el.dataset.valor || "0");
+        const decimales = parseInt(el.dataset.decimales || "0", 10);
+        const sufijo = el.dataset.sufijo || "";
+        const duracion = 1500;
+        const inicio = performance.now();
+
+        function paso(ahora: number) {
+          const p = Math.min((ahora - inicio) / duracion, 1);
+          const suave = 1 - Math.pow(1 - p, 3);
+          const valor = destino * suave;
+          const texto = decimales > 0
+            ? valor.toFixed(decimales).replace(".", ",")
+            : formateador.format(Math.round(valor));
+          el.innerHTML = `${texto}<em>${sufijo}</em>`;
+          if (p < 1) requestAnimationFrame(paso);
+        }
+        requestAnimationFrame(paso);
+      }
+
+      const contadores = document.querySelectorAll<HTMLElement>("[data-contador]");
+      if (reduce) {
+        contadores.forEach((el) => {
+          const d = parseInt(el.dataset.decimales || "0", 10);
+          const v = parseFloat(el.dataset.valor || "0");
+          el.innerHTML = `${d > 0 ? v.toFixed(d).replace(".", ",") : formateador.format(v)}<em>${el.dataset.sufijo || ""}</em>`;
+        });
+      } else {
+        const obsContador = new IntersectionObserver(
+          (entradas) => {
+            entradas.forEach((e) => {
+              if (!e.isIntersecting) return;
+              animar(e.target as HTMLElement);
+              obsContador.unobserve(e.target);
+            });
+          },
+          { threshold: 0.5 }
+        );
+        contadores.forEach((el) => obsContador.observe(el));
+      }
+    </script>
+
+    <style>
+      main { animation: entrarPagina 0.7s ease; }
+      @keyframes entrarPagina { from { opacity: 0; } to { opacity: 1; } }
+      main:has(.visor.abierto), main:has(.carrito.abierto) { animation: none; }
+    </style>
+  </body>
+</html>

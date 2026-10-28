@@ -1,0 +1,556 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { conBase, enlace } from "../lib/ruta";
+import dataBase from "../datos/catalogo.json";
+
+const data = conBase(dataBase) as any;
+const { productos, filtros, pagos, cierre } = data;
+
+const precio = (n: number) =>
+  new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    maximumFractionDigits: 0,
+  }).format(n);
+---
+
+<Layout
+  activa="catalogo"
+  titulo="Catálogo — Equipos, vestuario y vinilos | MDL VINILOCOL"
+  descripcion="Catálogo comercial de MDL Vinilocol: alquiler de equipos de filmación, producción audiovisual, vestuario, bienestar y vinilos automotrices."
+  imagen="/img/equipo-camara-top.jpg"
+>
+  <section class="cab-pagina">
+    <div class="container">
+      <div class="migas">
+        <a href={enlace("/")}>Inicio</a> <span>/</span> <span>Catálogo</span>
+      </div>
+      <div class="cab-fila">
+        <div class="up">
+          <p class="eyebrow">{data.eyebrow}</p>
+          <h1>
+            {data.titulo}<br />
+            <span class="serif oro-texto">{data.tituloAcento}</span>
+          </h1>
+        </div>
+        <div class="cab-lado up" style="transition-delay:120ms">
+          <p class="texto-lead" style="font-size:.95rem;">{data.texto}</p>
+          <div class="cab-servicios">
+            <span><Icon name="package" size={15} /> Alquiler</span>
+            <span><Icon name="shopping-bag" size={15} /> Venta</span>
+            <span><Icon name="globe" size={15} /> Mayoreo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion-sm">
+    <div class="container">
+      <div class="barra-catalogo">
+        <div class="filtros" role="group" aria-label="Filtrar catálogo">
+          {filtros.map((f: any, i: number) => (
+            <button class={`filtro ${i === 0 ? "activo" : ""}`} data-filtro={f.id} aria-pressed={i === 0 ? "true" : "false"}>
+              {f.texto}
+            </button>
+          ))}
+        </div>
+        <div class="busqueda">
+          <Icon name="search" size={16} />
+          <input type="search" id="buscarProducto" placeholder="Buscar en el catálogo" aria-label="Buscar producto" />
+        </div>
+        <button class="btn btn-borde btn-sm abrir-carrito" id="abrirCarrito">
+          <Icon name="shopping-bag" size={15} />
+          Carrito <span class="badge-carrito" id="badgeCarrito">0</span>
+        </button>
+      </div>
+
+      <div class="productos-grid" id="grillaProductos" data-stagger>
+        {productos.map((p: any) => (
+          <article class="producto up" id={p.id} data-id={p.id} data-categoria={p.categoria} data-nombre={p.nombre.toLowerCase()}>
+            <button class="producto-foto boton-foto" data-ver={p.id} aria-label={`Ver detalle de ${p.nombre}`}>
+              {p.imagen
+                ? <img src={p.imagen} alt={p.nombre} loading="lazy" />
+                : <div class="producto-sin-foto"><Icon name="heart" size={56} /></div>}
+              <span class="producto-badge">{p.tipo}</span>
+              {p.adulto && <span class="producto-badge adulto" style="left:auto;right:12px;">+18</span>}
+            </button>
+            <div class="producto-cuerpo">
+              <span class="producto-cat">{p.categoria}</span>
+              <button class="producto-nombre boton-nombre" data-ver={p.id}>{p.nombre}</button>
+              <div class="producto-precio">
+                <strong>{precio(p.precio)}</strong>
+                <span>/ {p.unidad}</span>
+              </div>
+              <div class="producto-pie">
+                <span class="stock">{p.stock}</span>
+                <button class="producto-add" data-add={p.id} aria-label={`Agregar ${p.nombre} al carrito`}>
+                  <Icon name="plus" size={17} />
+                </button>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="sin-resultados" id="sinResultados" hidden>
+        <Icon name="search" size={30} />
+        <p>No encontramos productos con ese filtro.</p>
+        <button class="btn btn-borde btn-sm" id="limpiarFiltros">Limpiar filtros</button>
+      </div>
+
+      <p class="nota-catalogo"><Icon name="clock" size={14} /> {data.nota}</p>
+    </div>
+  </section>
+
+  <section class="franja-pagos">
+    <div class="container franja-fila">
+      <div><Icon name="lock" size={20} /><span>Compra protegida</span></div>
+      <div><Icon name="credit-card" size={20} /><span>Wompi / Bold</span></div>
+      <div><Icon name="globe" size={20} /><span>PayPal internacional</span></div>
+      <div><Icon name="package" size={20} /><span>Envío discreto</span></div>
+      <div><span class="mas18">+18</span><span>Venta solo a adultos</span></div>
+    </div>
+  </section>
+
+  <section class="cierre">
+    <div class="container">
+      <p class="eyebrow centro" style="display:flex;justify-content:center;">Mayoreo y producción</p>
+      <h2 class="up">¿Necesitas <span class="serif oro-texto">algo a medida?</span></h2>
+      <p class="up">Armamos paquetes de equipos, vestuario y producción para proyectos completos. También atendemos compras al por mayor.</p>
+      <div class="acciones up">
+        <a href={cierre.cta.href} target="_blank" rel="noopener" class="btn btn-oro btn-grande">
+          {cierre.cta.texto} <Icon name="message-circle" size={16} />
+        </a>
+        <a href={enlace("/contacto/?tipo=b2b")} class="btn btn-borde btn-grande">
+          Mayoreo B2B <Icon name="arrow-up-right" size={15} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CARRITO ==================== -->
+  <div class="carrito-velo" id="carritoVelo"></div>
+  <aside class="carrito" id="carrito" aria-hidden="true" aria-label="Carrito de compras">
+    <div class="carrito-cab">
+      <div>
+        <h3>Tu pedido</h3>
+        <span class="contador" id="contadorCarrito">0 artículos</span>
+      </div>
+      <button class="carrito-cerrar" id="cerrarCarrito" aria-label="Cerrar carrito"><Icon name="x" size={17} /></button>
+    </div>
+    <div class="carrito-lista" id="carritoLista"></div>
+    <div class="carrito-pie">
+      <div class="carrito-sub">
+        <span>Subtotal</span>
+        <strong id="subtotalCarrito">$0</strong>
+      </div>
+      <p class="carrito-nota">Precios de referencia. La disponibilidad se confirma por WhatsApp antes de cualquier pago.</p>
+      <button class="btn btn-oro btn-ancho" id="irCheckout">
+        Finalizar pedido <Icon name="arrow-right" size={15} />
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==================== DETALLE PRODUCTO ==================== -->
+  <div class="velo" id="veloProducto"></div>
+  <div class="visor" id="visorProducto" role="dialog" aria-modal="true" aria-labelledby="prodTitulo">
+    <div class="visor-caja">
+      <button class="visor-cerrar" id="cerrarProducto" aria-label="Cerrar detalle"><Icon name="x" size={18} /></button>
+      <div class="visor-media"><img src="" alt="" id="prodImagen" /></div>
+      <div class="visor-info">
+        <span class="cat" id="prodCategoria"></span>
+        <h2 id="prodTitulo"></h2>
+        <div class="prod-precio"><strong id="prodPrecio"></strong><span id="prodUnidad"></span></div>
+        <p id="prodDescripcion"></p>
+        <ul class="prod-detalles" id="prodDetalles"></ul>
+        <div class="prod-pie">
+          <span class="stock" id="prodStock"></span>
+          <button class="btn btn-oro" id="prodAgregar">Agregar al carrito <Icon name="plus" size={15} /></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CHECKOUT ==================== -->
+  <div class="velo" id="veloCheckout"></div>
+  <div class="visor" id="checkout" role="dialog" aria-modal="true" aria-labelledby="checkoutTitulo">
+    <div class="visor-caja checkout-caja">
+      <button class="visor-cerrar" id="cerrarCheckout" aria-label="Cerrar checkout"><Icon name="x" size={18} /></button>
+      <div class="visor-info">
+        <span class="cat">Checkout demo</span>
+        <h2 id="checkoutTitulo">Finalizar pedido</h2>
+        <p style="margin-bottom:20px;">Este es un checkout de demostración: no se procesa ningún cobro. El pedido se envía por WhatsApp para confirmar disponibilidad y medio de pago.</p>
+
+        <div class="form" style="gap:12px;">
+          <div class="campo"><label for="cliNombre">Nombre</label><input id="cliNombre" type="text" placeholder="Tu nombre" /></div>
+          <div class="campo"><label for="cliCiudad">Ciudad</label><input id="cliCiudad" type="text" placeholder="Ciudad" /></div>
+          <div class="campo ancho"><label for="cliCorreo">Correo</label><input id="cliCorreo" type="email" placeholder="tu@correo.com" /></div>
+        </div>
+
+        <p class="checkout-label">Medio de pago preferido</p>
+        <div class="checkout-pagos">
+          {pagos.map((p: any, i: number) => (
+            <label class="pago-opcion">
+              <input type="radio" name="pago" value={p.nombre} checked={i === 0} />
+              <Icon name={p.icono} size={17} />
+              <span><strong>{p.nombre}</strong><small>{p.detalle}</small></span>
+            </label>
+          ))}
+        </div>
+
+        <div class="checkout-total">
+          <span>Total del pedido</span>
+          <strong id="totalCheckout">$0</strong>
+        </div>
+        <label class="check check-todo" style="margin:10px 0 16px;">
+          <input type="checkbox" id="aceptaCompra" />
+          <span>Confirmo que soy mayor de 18 años y acepto los <a href={enlace("/legal/#terminos")} style="text-decoration:underline;">términos</a> y la <a href={enlace("/legal/#privacidad")} style="text-decoration:underline;">política de datos</a>.</span>
+        </label>
+        <button class="btn btn-oro btn-ancho" id="enviarPedido">Enviar pedido por WhatsApp <Icon name="message-circle" size={16} /></button>
+        <p style="font-size:.62rem;color:var(--texto-mudo);margin-top:12px;margin-bottom:0;">Pasarela Wompi/Bold, PayPal y USDT listas para la versión de producción.</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/json" id="datosCatalogo" set:html={JSON.stringify(productos)}></script>
+
+  <script>
+    type Producto = {
+      id: string; nombre: string; categoria: string; tipo: string; precio: number;
+      unidad: string; imagen: string; descripcion: string; detalles: string[];
+      stock: string; adulto?: boolean;
+    };
+    type Linea = { id: string; cantidad: number };
+
+    const productos: Producto[] = JSON.parse(document.getElementById("datosCatalogo")?.textContent || "[]");
+    const base = import.meta.env.BASE_URL;
+    const porId = new Map(productos.map((p) => [p.id, p]));
+    const LL = "mdl-carrito";
+    const fmt = (n: number) => new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(n);
+    const $ = (id: string) => document.getElementById(id);
+
+    /* ---------- Carrito ---------- */
+    let carrito: Linea[] = [];
+    try { carrito = JSON.parse(localStorage.getItem(LL) || "[]"); } catch (e) { carrito = []; }
+
+    const lista = $("carritoLista");
+    const badge = $("badgeCarrito");
+    const contador = $("contadorCarrito");
+    const subtotal = $("subtotalCarrito");
+    const totalCheckout = $("totalCheckout");
+    const carritoEl = $("carrito");
+    const carritoVelo = $("carritoVelo");
+    const iconoBolsa = '<svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>';
+
+    function totalLinea(l: Linea) {
+      const p = porId.get(l.id);
+      return p ? p.precio * l.cantidad : 0;
+    }
+    function total() { return carrito.reduce((s, l) => s + totalLinea(l), 0); }
+    function unidades() { return carrito.reduce((s, l) => s + l.cantidad, 0); }
+
+    function guardar() {
+      try { localStorage.setItem(LL, JSON.stringify(carrito)); } catch (e) {}
+    }
+
+    function pintar() {
+      const n = unidades();
+      if (badge) { badge.textContent = String(n); badge.style.display = n ? "" : "none"; }
+      if (contador) contador.textContent = `${n} ${n === 1 ? "artículo" : "artículos"}`;
+      if (subtotal) subtotal.textContent = fmt(total());
+      if (totalCheckout) totalCheckout.textContent = fmt(total());
+
+      if (!lista) return;
+      if (!carrito.length) {
+        lista.innerHTML = `<div class="carrito-vacio">${iconoBolsa}<p>Tu carrito está vacío.</p></div>`;
+        return;
+      }
+      lista.innerHTML = carrito.map((l) => {
+        const p = porId.get(l.id);
+        if (!p) return "";
+        const foto = p.imagen
+          ? `<img src="${p.imagen}" alt="${p.nombre}" />`
+          : `<div class="mini-sin"></div>`;
+        return `
+          <div class="carrito-item">
+            ${foto}
+            <div>
+              <h4>${p.nombre}</h4>
+              <span class="precio">${fmt(p.precio)} <small style="color:var(--texto-mudo)">/ ${p.unidad}</small></span>
+              <div style="display:flex;align-items:center;gap:12px;margin-top:8px;">
+                <div class="cantidad">
+                  <button data-menos="${p.id}" aria-label="Quitar una unidad">−</button>
+                  <span>${l.cantidad}</span>
+                  <button data-mas="${p.id}" aria-label="Agregar una unidad">+</button>
+                </div>
+                <button class="quitar" data-quitar="${p.id}">Quitar</button>
+              </div>
+            </div>
+            <strong style="font-family:var(--font-display);font-size:.85rem;color:var(--oro-claro)">${fmt(totalLinea(l))}</strong>
+          </div>`;
+      }).join("");
+      guardar();
+    }
+
+    function agregar(id: string, abrir = true) {
+      const p = porId.get(id);
+      if (!p) return;
+      const l = carrito.find((x) => x.id === id);
+      if (l) l.cantidad += 1; else carrito.push({ id, cantidad: 1 });
+      pintar();
+      if (abrir) abrirCarritoPanel();
+    }
+
+    function cambiar(id: string, delta: number) {
+      const l = carrito.find((x) => x.id === id);
+      if (!l) return;
+      l.cantidad += delta;
+      if (l.cantidad <= 0) carrito = carrito.filter((x) => x.id !== id);
+      pintar();
+    }
+    function quitar(id: string) {
+      carrito = carrito.filter((x) => x.id !== id);
+      pintar();
+    }
+
+    function abrirCarritoPanel() {
+      carritoEl?.classList.add("abierto");
+      carritoEl?.setAttribute("aria-hidden", "false");
+      carritoVelo?.classList.add("visible");
+      document.body.style.overflow = "hidden";
+    }
+    function cerrarCarritoPanel() {
+      carritoEl?.classList.remove("abierto");
+      carritoEl?.setAttribute("aria-hidden", "true");
+      carritoVelo?.classList.remove("visible");
+      document.body.style.overflow = "";
+    }
+
+    $("abrirCarrito")?.addEventListener("click", abrirCarritoPanel);
+    $("cerrarCarrito")?.addEventListener("click", cerrarCarritoPanel);
+    carritoVelo?.addEventListener("click", cerrarCarritoPanel);
+    lista?.addEventListener("click", (e) => {
+      const t = e.target as HTMLElement;
+      const mas = t.closest<HTMLElement>("[data-mas]");
+      const menos = t.closest<HTMLElement>("[data-menos]");
+      const quit = t.closest<HTMLElement>("[data-quitar]");
+      if (mas) cambiar(mas.dataset.mas!, 1);
+      if (menos) cambiar(menos.dataset.menos!, -1);
+      if (quit) quitar(quit.dataset.quitar!);
+    });
+
+    document.querySelectorAll<HTMLElement>("[data-add]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        agregar(btn.dataset.add || "");
+      });
+    });
+
+    /* ---------- Filtros y búsqueda ---------- */
+    const grilla = $("grillaProductos");
+    const filtros = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-filtro]"));
+    const buscar = $("buscarProducto") as HTMLInputElement | null;
+    const sinResultados = $("sinResultados");
+    let categoriaActiva = "todo";
+    let texto = "";
+
+    function aplicar() {
+      let visibles = 0;
+      grilla?.querySelectorAll<HTMLElement>(".producto").forEach((card) => {
+        const okCat = categoriaActiva === "todo" || card.dataset.categoria === categoriaActiva;
+        const okTxt = !texto || (card.dataset.nombre || "").includes(texto);
+        const ok = okCat && okTxt;
+        card.style.display = ok ? "" : "none";
+        if (ok) visibles++;
+      });
+      if (sinResultados) sinResultados.hidden = visibles > 0;
+    }
+
+    filtros.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        categoriaActiva = btn.dataset.filtro || "todo";
+        filtros.forEach((b) => {
+          const activo = b === btn;
+          b.classList.toggle("activo", activo);
+          b.setAttribute("aria-pressed", String(activo));
+        });
+        aplicar();
+      });
+    });
+    buscar?.addEventListener("input", () => { texto = buscar.value.trim().toLowerCase(); aplicar(); });
+    $("limpiarFiltros")?.addEventListener("click", () => {
+      categoriaActiva = "todo"; texto = "";
+      if (buscar) buscar.value = "";
+      filtros.forEach((b, i) => {
+        b.classList.toggle("activo", i === 0);
+        b.setAttribute("aria-pressed", String(i === 0));
+      });
+      aplicar();
+    });
+
+    /* ---------- Detalle de producto ---------- */
+    const visorP = $("visorProducto");
+    const veloP = $("veloProducto");
+    let productoActual = "";
+    const iconoCheck = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+
+    function abrirProducto(id: string) {
+      const p = porId.get(id);
+      if (!p) return;
+      productoActual = id;
+      const img = $("prodImagen") as HTMLImageElement | null;
+      if (img) {
+        img.src = p.imagen || `${base}img/neon-calle.jpg`;
+        img.alt = p.nombre;
+        img.style.opacity = p.imagen ? "1" : "0.35";
+      }
+      $("prodCategoria")!.textContent = `${p.categoria} · ${p.tipo}`;
+      $("prodTitulo")!.textContent = p.nombre;
+      $("prodPrecio")!.textContent = fmt(p.precio);
+      $("prodUnidad")!.textContent = `/ ${p.unidad}`;
+      $("prodDescripcion")!.textContent = p.descripcion;
+      $("prodStock")!.textContent = p.stock;
+      $("prodDetalles")!.innerHTML = p.detalles.map((d) => `<li>${iconoCheck}${d}</li>`).join("");
+      visorP?.classList.add("abierto");
+      veloP?.classList.add("visible");
+      document.body.style.overflow = "hidden";
+    }
+    function cerrarProducto() {
+      visorP?.classList.remove("abierto");
+      veloP?.classList.remove("visible");
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll<HTMLElement>("[data-ver]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        abrirProducto(btn.dataset.ver || "");
+      });
+    });
+    $("cerrarProducto")?.addEventListener("click", cerrarProducto);
+    veloP?.addEventListener("click", cerrarProducto);
+    visorP?.addEventListener("click", (e) => { if (e.target === visorP) cerrarProducto(); });
+    $("prodAgregar")?.addEventListener("click", () => {
+      agregar(productoActual);
+      cerrarProducto();
+    });
+
+    /* ---------- Checkout ---------- */
+    const checkout = $("checkout");
+    const veloCheckout = $("veloCheckout");
+
+    function abrirCheckout() {
+      if (!carrito.length) return;
+      cerrarCarritoPanel();
+      if (totalCheckout) totalCheckout.textContent = fmt(total());
+      checkout?.classList.add("abierto");
+      veloCheckout?.classList.add("visible");
+      document.body.style.overflow = "hidden";
+    }
+    function cerrarCheckout() {
+      checkout?.classList.remove("abierto");
+      veloCheckout?.classList.remove("visible");
+      document.body.style.overflow = "";
+    }
+
+    $("irCheckout")?.addEventListener("click", abrirCheckout);
+    $("cerrarCheckout")?.addEventListener("click", cerrarCheckout);
+    veloCheckout?.addEventListener("click", cerrarCheckout);
+    checkout?.addEventListener("click", (e) => { if (e.target === checkout) cerrarCheckout(); });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      cerrarProducto(); cerrarCheckout(); cerrarCarritoPanel();
+    });
+
+    $("enviarPedido")?.addEventListener("click", () => {
+      const acepta = $("aceptaCompra") as HTMLInputElement | null;
+      if (!acepta?.checked) {
+        acepta?.focus();
+        acepta?.closest("label")?.animate(
+          [{ transform: "translateX(0)" }, { transform: "translateX(-5px)" }, { transform: "translateX(5px)" }, { transform: "translateX(0)" }],
+          { duration: 260 }
+        );
+        return;
+      }
+      const nombre = ($("cliNombre") as HTMLInputElement)?.value.trim() || "Cliente";
+      const ciudad = ($("cliCiudad") as HTMLInputElement)?.value.trim();
+      const correo = ($("cliCorreo") as HTMLInputElement)?.value.trim();
+      const pago = (document.querySelector('input[name="pago"]:checked') as HTMLInputElement)?.value || "Por confirmar";
+      const lineas = carrito.map((l) => {
+        const p = porId.get(l.id);
+        return p ? `• ${l.cantidad} × ${p.nombre} — ${fmt(p.precio * l.cantidad)}` : "";
+      }).filter(Boolean).join("\n");
+      const mensaje = [
+        "Hola MDL VINILOCOL, quiero confirmar este pedido:",
+        lineas,
+        "",
+        `Total: ${fmt(total())}`,
+        `Pago preferido: ${pago}`,
+        `Nombre: ${nombre}`,
+        ciudad ? `Ciudad: ${ciudad}` : "",
+        correo ? `Correo: ${correo}` : "",
+        "",
+        "Entiendo que es un pedido de demostración y que la disponibilidad se confirma por este canal.",
+      ].filter((x) => x !== "").join("\n");
+      window.open(`https://wa.me/573160998998?text=${encodeURIComponent(mensaje)}`, "_blank", "noopener");
+      cerrarCheckout();
+    });
+
+    pintar();
+  </script>
+
+  <style>
+    .cab-servicios { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--linea); }
+    .cab-servicios span { display: inline-flex; align-items: center; gap: 7px; font-size: .66rem; color: var(--texto-suave); letter-spacing: .04em; }
+    .cab-servicios :global(svg) { color: var(--oro); }
+
+    .barra-catalogo { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 34px; }
+    .barra-catalogo .filtros { margin-right: auto; }
+    .busqueda { display: flex; align-items: center; gap: 9px; border: 1px solid var(--linea); border-radius: 999px; padding: 10px 16px; color: var(--texto-mudo); transition: border-color .3s; }
+    .busqueda:focus-within { border-color: var(--oro); }
+    .busqueda input { background: none; border: 0; outline: 0; font-size: .74rem; color: var(--texto); width: 170px; }
+    .busqueda input::placeholder { color: var(--texto-mudo); }
+    .badge-carrito { display: inline-grid; place-items: center; min-width: 19px; height: 19px; border-radius: 999px; background: var(--degradado-oro); color: #140d04; font-size: .58rem; font-weight: 800; margin-left: 2px; }
+    .abrir-carrito { gap: 8px; }
+
+    .boton-foto { display: block; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; }
+    .boton-nombre { text-align: left; color: var(--texto); background: none; border: 0; padding: 0; cursor: pointer; transition: color .3s; }
+    .boton-nombre:hover { color: var(--oro-claro); }
+
+    .sin-resultados { text-align: center; padding: 60px 0; color: var(--texto-mudo); }
+    .sin-resultados :global(svg) { margin: 0 auto 12px; color: var(--linea-fuerte); }
+    .sin-resultados p { margin-bottom: 18px; font-size: .85rem; }
+
+    .nota-catalogo { display: flex; align-items: flex-start; gap: 8px; margin-top: 30px; font-size: .68rem; color: var(--texto-mudo); max-width: 80ch; }
+    .nota-catalogo :global(svg) { margin-top: 2px; flex: none; color: var(--oro); }
+
+    .franja-pagos { border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); background: #0a0907; }
+    .franja-fila { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 22px; padding-bottom: 22px; }
+    .franja-fila > div { display: inline-flex; align-items: center; gap: 8px; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--texto-mudo); }
+    .franja-fila :global(svg) { color: var(--oro); }
+    .mas18 { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--degradado-oro); color: #140d04; font-size: .55rem; font-weight: 800; }
+
+    .prod-precio { display: flex; align-items: baseline; gap: 7px; margin: -4px 0 16px; }
+    .prod-precio strong { font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; letter-spacing: -.03em; color: var(--oro-claro); }
+    .prod-precio span { font-size: .66rem; text-transform: uppercase; letter-spacing: .1em; color: var(--texto-mudo); }
+    .prod-detalles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; margin-bottom: 22px; }
+    .prod-detalles li { display: flex; align-items: center; gap: 8px; font-size: .76rem; color: var(--texto-suave); }
+    .prod-detalles li :global(svg) { color: var(--oro); flex: none; }
+    .prod-pie { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: auto; padding-top: 18px; border-top: 1px solid var(--linea); flex-wrap: wrap; }
+    .prod-pie .stock { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: #8fae82; }
+
+    .checkout-label { font-size: .57rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--texto-mudo); margin: 18px 0 10px; }
+    .check-todo { margin-top: 8px; }
+    .check a { color: var(--texto-suave); }
+
+    @media (max-width: 760px) {
+      .busqueda { flex: 1; }
+      .busqueda input { width: 100%; }
+      .prod-detalles { grid-template-columns: 1fr; }
+      .franja-fila { justify-content: flex-start; gap: 14px 24px; }
+    }
+  </style>
+</Layout>

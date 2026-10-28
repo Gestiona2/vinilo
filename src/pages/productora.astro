@@ -1,0 +1,258 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import Sello from "../components/Sello.astro";
+import { conBase, enlace } from "../lib/ruta";
+import dataBase from "../datos/productora.json";
+
+const data = conBase(dataBase);
+const { hero, manifiesto, cifras, servicios, infraestructura, linea, cierre } = data;
+---
+
+<Layout
+  activa="productora"
+  titulo="La productora — MDL VINILOCOL"
+  descripcion="Productora audiovisual integral para la industria del entretenimiento para adultos: producción, distribución, equipos, vestuario y vinilos."
+  imagen="/img/consola-produccion.jpg"
+>
+  <section class="cab-pagina">
+    <div class="container">
+      <div class="migas">
+        <a href={enlace("/")}>Inicio</a> <span>/</span> <span>Productora</span>
+      </div>
+      <div class="cab-fila">
+        <div class="up">
+          <p class="eyebrow">{hero.eyebrow}</p>
+          <h1>
+            {hero.titulo}<br />
+            <span class="serif oro-texto">{hero.tituloAcento}</span>
+          </h1>
+          <p class="texto-lead">{hero.texto}</p>
+        </div>
+        <div class="cab-lado up" style="transition-delay:120ms">
+          <div class="ficha">
+            <div class="ficha-fila"><dt>Base</dt><dd>{hero.sello}</dd></div>
+            <div class="ficha-fila"><dt>Fundación</dt><dd>2019</dd></div>
+            <div class="ficha-fila"><dt>Alcance</dt><dd>Colombia · LATAM · Global</dd></div>
+            <div class="ficha-fila"><dt>Especialidad</dt><dd>Contenido premium +18</dd></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="banda-imagen">
+    <img src={hero.imagen} alt="Consola de producción y edición en el estudio" loading="eager" />
+    <div class="banda-imagen-capa">
+      <div class="container">
+        <div class="banda-cita up">
+          <span class="serif">“La imagen es el negocio. La confianza es el activo.”</span>
+          <span class="firma">Dirección MDL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="seccion">
+    <div class="container split">
+      <div class="up">
+        <div class="collage">
+          <div class="collage-principal">
+            <img src={hero.imagenPrincipal} alt="Equipo de cámara en rodaje" loading="lazy" />
+          </div>
+          <div class="collage-secundaria">
+            <img src={hero.imagenSecundaria} alt="Claqueta de rodaje" loading="lazy" />
+          </div>
+          <div class="collage-sello"><Sello centro="MDL" texto="PRODUCCIÓN · DIRECCIÓN · DISTRIBUCIÓN ·" /></div>
+        </div>
+      </div>
+      <div class="up" style="transition-delay:120ms">
+        <p class="eyebrow">{manifiesto.eyebrow}</p>
+        <h2 class="titulo-seccion">
+          {manifiesto.titulo}<br />
+          <span class="serif oro-texto">{manifiesto.tituloAcento}</span>
+        </h2>
+        {manifiesto.parrafos.map((p, i) => (
+          <p class="texto-lead" style={i === 0 ? "margin-top:24px;" : "margin-top:16px;color:var(--texto-mudo);font-size:.95rem;"}>{p}</p>
+        ))}
+        <blockquote class="cita">
+          <p class="serif">{manifiesto.cita}</p>
+          <cite>{manifiesto.firma}</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="cifras-banda">
+    <div class="container cifras-fila">
+      {cifras.map((c) => (
+        <div class="cifra-grande up">
+          <div class="valor" data-contador data-valor={c.valor} data-sufijo={c.sufijo ?? ""} data-decimales={c.decimales ?? 0}>0</div>
+          <span>{c.etiqueta}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="seccion seccion-borde">
+    <div class="container">
+      <div class="cabecera-seccion">
+        <div class="up">
+          <p class="eyebrow">{servicios.eyebrow}</p>
+          <h2 class="titulo-seccion">
+            {servicios.titulo}<br />
+            <span class="serif oro-texto">{servicios.tituloAcento}</span>
+          </h2>
+        </div>
+      </div>
+      <div class="servicios-grid" data-stagger>
+        {servicios.items.map((s) => (
+          <article class="servicio up">
+            <span class="n">{s.numero}</span>
+            <h3>{s.titulo}</h3>
+            <p>{s.texto}</p>
+            <ul>
+              {s.lista.map((l) => <li><Icon name="check" size={14} />{l}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="container split split-desigual">
+      <div class="up">
+        <p class="eyebrow">{infraestructura.eyebrow}</p>
+        <h2 class="titulo-seccion">
+          {infraestructura.titulo}<br />
+          <span class="serif oro-texto">{infraestructura.tituloAcento}</span>
+        </h2>
+        <p class="texto-lead" style="margin-top:22px;">{infraestructura.texto}</p>
+        <div class="foto-marco apaisada" style="margin-top:32px;">
+          <img src={infraestructura.imagen} alt="Equipo de cámara profesional" loading="lazy" />
+        </div>
+      </div>
+      <div class="grupos up" style="transition-delay:120ms">
+        {infraestructura.grupos.map((g, i) => (
+          <div class="grupo">
+            <span class="num">{String(i + 1).padStart(2, "0")}</span>
+            <h3>{g.titulo}</h3>
+            <ul>
+              {g.items.map((it) => <li>{it}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion-borde">
+    <div class="container">
+      <div class="cabecera-seccion">
+        <div class="up">
+          <p class="eyebrow">{linea.eyebrow}</p>
+          <h2 class="titulo-seccion">
+            {linea.titulo}<br />
+            <span class="serif oro-texto">{linea.tituloAcento}</span>
+          </h2>
+        </div>
+      </div>
+      <div class="hitos" data-stagger>
+        {linea.hitos.map((h) => (
+          <div class="hito up">
+            <span class="anio">{h.anio}</span>
+            <h3>{h.titulo}</h3>
+            <p>{h.texto}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cierre">
+    <div class="container">
+      <p class="eyebrow centro" style="display:flex;justify-content:center;">{cierre.eyebrow}</p>
+      <h2 class="up">
+        {cierre.titulo} <span class="serif oro-texto">{cierre.tituloAcento}</span>
+      </h2>
+      <p class="up">{cierre.texto}</p>
+      <div class="acciones up">
+        <a href={cierre.cta.href} target="_blank" rel="noopener" class="btn btn-oro btn-grande">
+          {cierre.cta.texto} <Icon name="message-circle" size={16} />
+        </a>
+        <a href={enlace("/portafolio/")} class="btn btn-borde btn-grande">
+          Ver portafolio <Icon name="arrow-right" size={15} />
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .banda-imagen { position: relative; overflow: hidden; border-bottom: 1px solid var(--linea); }
+  .banda-imagen img { width: 100%; height: clamp(300px, 42vw, 560px); object-fit: cover; filter: saturate(.8); }
+  .banda-imagen-capa {
+    position: absolute; inset: 0; display: flex; align-items: flex-end; padding-bottom: 40px;
+    background: linear-gradient(180deg, rgba(7,6,6,.15), rgba(7,6,6,.86));
+  }
+  .banda-cita { display: flex; flex-direction: column; gap: 10px; max-width: 620px; }
+  .banda-cita .serif { font-size: clamp(1.5rem, 3.2vw, 2.6rem); line-height: 1.1; color: var(--marfil); }
+  .banda-cita .firma { font-size: .6rem; letter-spacing: .24em; text-transform: uppercase; color: var(--oro); }
+
+  .cita { margin-top: 30px; padding-left: 22px; border-left: 1px solid var(--linea-fuerte); }
+  .cita p { font-size: clamp(1.35rem, 2.4vw, 1.9rem); line-height: 1.15; color: var(--oro-claro); }
+  .cita cite { display: block; margin-top: 10px; font-style: normal; font-size: .58rem; letter-spacing: .22em; text-transform: uppercase; color: var(--texto-mudo); }
+
+  .cifras-banda { border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); background: #0a0907; }
+  .cifras-fila { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .cifra-grande { padding: 40px 27px; border-right: 1px solid var(--linea); }
+  .cifra-grande:last-child { border-right: 0; }
+  .cifra-grande .valor { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; letter-spacing: -.04em; line-height: 1; color: var(--oro-claro); }
+  .cifra-grande .valor :global(em) { font-style: normal; color: var(--oro); }
+  .cifra-grande span { display: block; margin-top: 8px; font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--texto-mudo); }
+
+  .servicios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .servicio {
+    position: relative; padding: 32px 28px; border: 1px solid var(--linea); border-radius: 16px;
+    background: linear-gradient(160deg, rgba(255,255,255,.025), transparent 60%);
+    transition: border-color .4s, transform .4s, background .4s;
+  }
+  .servicio:hover { border-color: var(--linea-fuerte); transform: translateY(-5px); background: linear-gradient(160deg, rgba(227,178,92,.07), transparent 60%); }
+  .servicio .n { font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: var(--oro); }
+  .servicio h3 { margin: 16px 0 10px; font-size: 1.28rem; font-weight: 600; letter-spacing: -.03em; }
+  .servicio p { font-size: .86rem; color: var(--texto-mudo); line-height: 1.65; }
+  .servicio ul { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--linea); display: flex; flex-direction: column; gap: 8px; }
+  .servicio li { display: flex; align-items: center; gap: 8px; font-size: .76rem; color: var(--texto-suave); }
+  .servicio li :global(svg) { color: var(--oro); }
+
+  .grupos { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--linea); border: 1px solid var(--linea); border-radius: 14px; overflow: hidden; }
+  .grupo { padding: 28px 24px; background: var(--tinta); }
+  .grupo .num { font-family: var(--font-serif); font-style: italic; font-size: .9rem; color: var(--oro); }
+  .grupo h3 { font-size: 1rem; font-weight: 600; margin: 8px 0 12px; }
+  .grupo ul { display: flex; flex-wrap: wrap; gap: 6px; }
+  .grupo li { font-size: .66rem; letter-spacing: .04em; color: var(--texto-suave); border: 1px solid var(--linea); border-radius: 999px; padding: 5px 10px; }
+
+  .hitos { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--linea); }
+  .hito { padding: 26px 20px 0 0; border-right: 1px solid var(--linea); position: relative; }
+  .hito:last-child { border-right: 0; }
+  .hito::before { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--oro); box-shadow: 0 0 12px var(--sombra-oro); }
+  .hito .anio { font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; color: var(--oro); }
+  .hito h3 { font-size: .98rem; font-weight: 600; margin: 12px 0 6px; }
+  .hito p { font-size: .78rem; color: var(--texto-mudo); line-height: 1.6; }
+
+  @media (max-width: 960px) {
+    .servicios-grid { grid-template-columns: 1fr; }
+    .cifras-fila { grid-template-columns: 1fr 1fr; }
+    .cifra-grande:nth-child(2) { border-right: 0; }
+    .cifra-grande:nth-child(1), .cifra-grande:nth-child(2) { border-bottom: 1px solid var(--linea); }
+    .hitos { grid-template-columns: 1fr 1fr; }
+    .hito { padding-bottom: 24px; }
+    .hito:nth-child(2n) { border-right: 0; }
+  }
+  @media (max-width: 640px) {
+    .cifras-fila, .hitos, .grupos { grid-template-columns: 1fr; }
+    .cifra-grande, .hito { border-right: 0; border-bottom: 1px solid var(--linea); }
+    .banda-cita .serif { font-size: 1.4rem; }
+  }
+</style>

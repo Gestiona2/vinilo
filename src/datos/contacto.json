@@ -1,0 +1,79 @@
+{
+  "eyebrow": "Contacto",
+  "titulo": "Hablemos.",
+  "tituloAcento": "Sin vueltas.",
+  "texto": "Elige el canal y el motivo. Te responde una persona del equipo, no un bot.",
+  "tiempos": "Respondemos en menos de 24 horas hábiles.",
+  "tipos": [
+    { "id": "cliente", "texto": "Cliente" },
+    { "id": "b2b", "texto": "Aliado B2B" },
+    { "id": "talento", "texto": "Talento" }
+  ],
+  "formularios": {
+    "cliente": {
+      "titulo": "Cuéntanos tu proyecto",
+      "texto": "Producción, campaña, fotografía o contenido para plataformas.",
+      "boton": "Enviar mensaje",
+      "campos": {
+        "nombre": "Nombre",
+        "marca": "Marca o empresa",
+        "correo": "Correo",
+        "whatsapp": "WhatsApp",
+        "servicio": "Qué necesitas",
+        "presupuesto": "Presupuesto estimado",
+        "mensaje": "Cuéntanos el proyecto"
+      }
+    },
+    "b2b": {
+      "titulo": "Abre una conversación B2B",
+      "texto": "Coproducción, distribución, mayoreo o licencias.",
+      "boton": "Enviar propuesta",
+      "campos": {
+        "nombre": "Nombre",
+        "empresa": "Empresa",
+        "pais": "País",
+        "correo": "Correo",
+        "whatsapp": "WhatsApp",
+        "interes": "Tipo de alianza",
+        "mensaje": "Cuéntanos tu operación"
+      }
+    },
+    "talento": {
+      "titulo": "Aplica al casting",
+      "texto": "Prefieres el formulario completo? Está en la página de talento.",
+      "boton": "Enviar aplicación",
+      "campos": {
+        "nombre": "Nombre completo",
+        "edad": "Edad",
+        "ciudad": "Ciudad",
+        "whatsapp": "WhatsApp",
+        "portafolio": "Instagram o portafolio",
+        "mensaje": "Cuéntanos de ti"
+      }
+    }
+  },
+  "canales": [
+    { "icono": "message-circle", "titulo": "WhatsApp", "texto": "+57 316 099 8998", "href": "https://wa.me/573160998998", "nota": "Atención comercial y casting" },
+    { "icono": "mail", "titulo": "Correo", "texto": "hola@mdlvinilocol.com", "href": "mailto:hola@mdlvinilocol.com", "nota": "Propuestas y alianzas" },
+    { "icono": "send", "titulo": "Telegram", "texto": "@mdlvinilocol", "href": "https://t.me/mdlvinilocol", "nota": "Canal directo" },
+    { "icono": "map-pin", "titulo": "Base", "texto": "Bogotá, Colombia", "href": "", "nota": "Rodajes nacionales e internacionales" }
+  ],
+  "faq": [
+    {
+      "p": "¿Trabajan con contenido explícito?",
+      "r": "Somos una productora para la industria del entretenimiento para adultos. Todo proyecto se define por escrito: alcance, límites, uso de imagen y distribución. El sitio es +18 y no publica material explícito."
+    },
+    {
+      "p": "¿Cómo se cotiza un proyecto?",
+      "r": "Depende del formato, los días de rodaje, el equipo humano y la postproducción. Escríbenos con el objetivo y el presupuesto estimado; enviamos una propuesta en menos de 24 horas hábiles."
+    },
+    {
+      "p": "¿Hacen envíos nacionales?",
+      "r": "Sí. Los productos del catálogo se envían a todo Colombia en empaque discreto. Para mayoreo y exportación, el canal es el formulario B2B."
+    },
+    {
+      "p": "¿Cómo funciona el pago?",
+      "r": "En producción se integra una pasarela segura (Wompi/Bold, PayPal o USDT) según el tipo de operación. En esta demo el checkout envía el pedido por WhatsApp para confirmar disponibilidad."
+    }
+  ]
+}

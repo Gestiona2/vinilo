@@ -1,0 +1,33 @@
+{
+  "nombre": "MDL Vinilo Colombia",
+  "nombreCorto": "MDL VINILOCOL",
+  "lema": "Contenido que se siente.",
+  "razonSocial": "MDL Vinilo Colombia SAS",
+  "descripcion": "Productora audiovisual y casa de contenido para la industria del entretenimiento para adultos. Producción, distribución, equipos, vestuario y vinilos de alto impacto.",
+  "dominio": "https://mdlvinilocol.com",
+  "ciudad": "Bogotá, Colombia",
+  "whatsapp": "573160998998",
+  "telefono": "+57 316 099 8998",
+  "correo": "hola@mdlvinilocol.com",
+  "horario": "Lunes a viernes · 9:00 a 18:00 (COT)",
+  "fundada": "2019",
+  "menu": [
+    { "id": "inicio", "texto": "Inicio", "href": "/" },
+    { "id": "productora", "texto": "Productora", "href": "/productora/" },
+    { "id": "portafolio", "texto": "Portafolio", "href": "/portafolio/" },
+    { "id": "catalogo", "texto": "Catálogo", "href": "/catalogo/" },
+    { "id": "talento", "texto": "Talento", "href": "/talento/" },
+    { "id": "contacto", "texto": "Contacto", "href": "/contacto/" }
+  ],
+  "ctaPrincipal": {
+    "texto": "Hablemos por WhatsApp",
+    "href": "https://wa.me/573160998998?text=Hola%20MDL%20VINILOCOL%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios."
+  },
+  "redes": [
+    { "texto": "Instagram", "icono": "instagram", "href": "https://www.instagram.com/mdlvinilocol", "nota": "@mdlvinilocol" },
+    { "texto": "Telegram", "icono": "send", "href": "https://t.me/mdlvinilocol", "nota": "@mdlvinilocol" },
+    { "texto": "WhatsApp", "icono": "message-circle", "href": "https://wa.me/573160998998", "nota": "+57 316 099 8998" }
+  ],
+  "avisoEdad": "Sitio exclusivo para personas mayores de 18 años.",
+  "demo": "Sitio de demostración. Precios, proyectos y datos de contacto son de ejemplo."
+}

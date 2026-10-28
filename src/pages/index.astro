@@ -1,0 +1,363 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import Sello from "../components/Sello.astro";
+import { conBase, enlace } from "../lib/ruta";
+import inicioBase from "../datos/inicio.json";
+import catalogoBase from "../datos/catalogo.json";
+import sitioBase from "../datos/sitio.json";
+
+const inicio = conBase(inicioBase);
+const catalogo = conBase(catalogoBase);
+const sitio = conBase(sitioBase);
+
+const { hero, marquesina, productora, lineas, b2b, talento, proceso, cierre } = inicio;
+
+const obras = inicio.portafolio.items.slice(0, 4);
+const productos = catalogo.productos.filter((p) => inicio.catalogo.destacados.includes(p.id));
+
+const precio = (n: number) =>
+  new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    maximumFractionDigits: 0,
+  }).format(n);
+---
+
+<Layout activa="inicio">
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <div class="hero-fondo">
+      <img src={hero.imagenFondo} alt="Proyector de cine encendido en un set oscuro" fetchpriority="high" />
+    </div>
+    <div class="hero-manchas" aria-hidden="true"><span></span><span></span><span></span></div>
+
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="hero-eyebrow"><span class="pulso"></span>{hero.eyebrow}</p>
+        <h1 class="hero-titulo">
+          {hero.titulo.map((linea, i) => (
+            <span class="linea">
+              <span class={i === 2 ? "serif oro-texto" : ""}>{linea}</span>
+            </span>
+          ))}
+        </h1>
+        <p class="hero-texto">{hero.texto}</p>
+        <div class="hero-acciones">
+          <a href={hero.ctaPrincipal.href} class="btn btn-oro">
+            {hero.ctaPrincipal.texto}
+            <Icon name="play" size={14} />
+          </a>
+          <a href={hero.ctaSecundario.href} class="btn btn-borde">
+            {hero.ctaSecundario.texto}
+            <Icon name="arrow-up-right" size={15} />
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-reel">
+        <div class="reel-marco">
+          <img src={hero.imagenReel} alt="Fotograma editorial de una producción MDL" loading="eager" />
+          <a href={enlace("/portafolio/")} class="reel-play" aria-label="Ver el portafolio audiovisual">
+            <Icon name="play" size={22} />
+          </a>
+          <div class="reel-pie">
+            <div>
+              <strong>Reel de marca</strong>
+              <span>{hero.reelNota}</span>
+            </div>
+            <span class="anio">’26</span>
+          </div>
+        </div>
+        <div class="reel-flotante" aria-hidden="true">
+          <img src={hero.imagenReel2} alt="" loading="lazy" />
+        </div>
+        <span class="reel-etiqueta">{hero.reelEtiqueta}</span>
+      </div>
+    </div>
+
+    <span class="hero-lateral" aria-hidden="true">Bogotá · Colombia · Global</span>
+
+    <div class="container hero-pie">
+      <div class="hero-stats">
+        {hero.stats.map((s) => (
+          <div class="hero-stat">
+            <div class="valor" data-contador data-valor={s.valor} data-sufijo={s.sufijo} data-decimales={s.decimales ?? 0}>0</div>
+            <span class="etiqueta">{s.etiqueta}</span>
+          </div>
+        ))}
+      </div>
+      <a href="#productora" class="hero-scroll">
+        Desliza para descubrir
+        <span class="linea-scroll" aria-hidden="true"></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== MARQUESINA ==================== -->
+  <div class="marquesina" aria-hidden="true">
+    <div class="marquesina-track">
+      {[...marquesina, ...marquesina].map((t) => (
+        <span class="marquesina-item"><span>{t}</span><i>✦</i></span>
+      ))}
+    </div>
+  </div>
+
+  <!-- ==================== PRODUCTORA ==================== -->
+  <section class="seccion" id="productora">
+    <div class="container split split-desigual">
+      <div class="up">
+        <p class="eyebrow">{productora.eyebrow}</p>
+        <h2 class="titulo-seccion">
+          {productora.titulo}<br />
+          <span class="serif oro-texto">{productora.tituloAcento}</span>
+        </h2>
+        <p class="texto-lead" style="margin-top:26px;">{productora.texto}</p>
+        <p class="texto-lead" style="margin-top:16px;color:var(--texto-mudo);font-size:.95rem;">{productora.texto2}</p>
+
+        <div class="capacidades">
+          {productora.capacidades.map((c) => (
+            <div class="capacidad">
+              <span class="n">{c.numero}</span>
+              <div>
+                <h3>{c.titulo}</h3>
+                <p>{c.texto}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="cifras-mini">
+          {productora.cifras.map((c) => (
+            <div class="cifra">
+              <div class="valor">{c.valor}</div>
+              <span class="etiqueta">{c.etiqueta}</span>
+            </div>
+          ))}
+        </div>
+
+        <a href={enlace("/productora/")} class="btn btn-borde" style="margin-top:36px;">
+          Conocer la productora
+          <Icon name="arrow-right" size={15} />
+        </a>
+      </div>
+
+      <div class="collage up" style="transition-delay:120ms">
+        <div class="collage-principal">
+          <img src={productora.imagenPrincipal} alt="Claqueta de rodaje en locación" loading="lazy" />
+        </div>
+        <div class="collage-secundaria">
+          <img src={productora.imagenSecundaria} alt="Consola de producción y edición" loading="lazy" />
+        </div>
+        <div class="collage-sello">
+          <Sello centro="2019" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PORTAFOLIO ==================== -->
+  <section class="seccion seccion-borde">
+    <div class="container">
+      <div class="cabecera-seccion">
+        <div class="up">
+          <p class="eyebrow">{inicio.portafolio.eyebrow}</p>
+          <h2 class="titulo-seccion">
+            {inicio.portafolio.titulo}<br />
+            <span class="serif oro-texto">{inicio.portafolio.tituloAcento}</span>
+          </h2>
+        </div>
+        <div class="acciones up" style="transition-delay:120ms">
+          <p class="texto-mudo" style="font-size:.86rem;margin-bottom:18px;">{inicio.portafolio.texto}</p>
+          <a href={enlace("/portafolio/")} class="enlace-linea" style="font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--oro);">
+            Ver portafolio completo <Icon name="arrow-up-right" size={14} />
+          </a>
+        </div>
+      </div>
+
+      <div class="obras-grid obras-home" data-stagger>
+        {obras.map((obra, i) => (
+          <a href={enlace(`/portafolio/#${obra.id}`)} class="obra up">
+            <img src={obra.imagen} alt={`${obra.titulo} — ${obra.categoria}`} loading="lazy" />
+            <span class="obra-num">{String(i + 1).padStart(2, "0")}</span>
+            <span class="obra-play"><Icon name="play" size={15} /></span>
+            <div class="obra-meta">
+              <div>
+                <span class="cat">{obra.categoria}</span>
+                <h3>{obra.titulo}</h3>
+              </div>
+              <span class="anio">{obra.anio}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LÍNEAS ==================== -->
+  <section class="seccion">
+    <div class="container">
+      <div class="cabecera-seccion">
+        <div class="up">
+          <p class="eyebrow">{lineas.eyebrow}</p>
+          <h2 class="titulo-seccion">
+            {lineas.titulo}<br />
+            <span class="serif oro-texto">{lineas.tituloAcento}</span>
+          </h2>
+        </div>
+      </div>
+      <div class="lineas" data-stagger>
+        {lineas.items.map((l) => (
+          <a href={l.cta.href} class="linea-item up">
+            <span class="n">{l.numero}</span>
+            <h3>{l.titulo}</h3>
+            <p>{l.texto}</p>
+            <span class="flecha"><Icon name="arrow-up-right" size={18} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CATÁLOGO ==================== -->
+  <section class="seccion seccion-borde" id="catalogo">
+    <div class="container">
+      <div class="cabecera-seccion">
+        <div class="up">
+          <p class="eyebrow">{inicio.catalogo.eyebrow}</p>
+          <h2 class="titulo-seccion">
+            {inicio.catalogo.titulo}<br />
+            <span class="serif oro-texto">{inicio.catalogo.tituloAcento}</span>
+          </h2>
+        </div>
+        <div class="acciones up" style="transition-delay:120ms">
+          <p class="texto-mudo" style="font-size:.86rem;margin-bottom:18px;">{inicio.catalogo.texto}</p>
+          <a href={inicio.catalogo.cta.href} class="btn btn-borde btn-sm">
+            {inicio.catalogo.cta.texto}
+            <Icon name="arrow-right" size={14} />
+          </a>
+        </div>
+      </div>
+
+      <div class="productos-grid" data-stagger>
+        {productos.map((p) => (
+          <a href={enlace(`/catalogo/#${p.id}`)} class="producto up">
+            <div class="producto-foto">
+              {p.imagen
+                ? <img src={p.imagen} alt={p.nombre} loading="lazy" />
+                : <div class="producto-sin-foto"><Icon name="heart" size={56} /></div>}
+              <span class="producto-badge">{p.tipo}</span>
+            </div>
+            <div class="producto-cuerpo">
+              <span class="producto-cat">{p.categoria}</span>
+              <h3 class="producto-nombre">{p.nombre}</h3>
+              <div class="producto-precio">
+                <strong>{precio(p.precio)}</strong>
+                <span>/ {p.unidad}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== B2B ==================== -->
+  <section class="banda-oro seccion">
+    <div class="container split">
+      <div class="up">
+        <p class="eyebrow">{b2b.eyebrow}</p>
+        <h2 class="titulo-seccion" style="max-width:16ch;">{b2b.titulo}</h2>
+      </div>
+      <div class="up" style="transition-delay:120ms">
+        <p class="texto-lead" style="color:rgba(21,14,4,.74);max-width:44ch;">{b2b.texto}</p>
+        <div class="datos">
+          {b2b.datos.map((d) => <span>{d}</span>)}
+        </div>
+        <a href={b2b.cta.href} class="btn btn-negro" style="margin-top:34px;">
+          {b2b.cta.texto}
+          <Icon name="arrow-up-right" size={15} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TALENTO ==================== -->
+  <section class="seccion">
+    <div class="container split">
+      <div class="up">
+        <div class="foto-marco alta">
+          <img src={talento.imagen} alt="Modelo en producción editorial de MDL" loading="lazy" />
+        </div>
+      </div>
+      <div class="up" style="transition-delay:120ms">
+        <p class="eyebrow">{talento.eyebrow}</p>
+        <h2 class="titulo-seccion">
+          {talento.titulo}<br />
+          <span class="serif oro-texto">{talento.tituloAcento}</span>
+        </h2>
+        <p class="texto-lead" style="margin-top:22px;">{talento.texto}</p>
+        <ul class="lista-check">
+          {talento.beneficios.map((b) => (
+            <li><Icon name="check" size={16} />{b}</li>
+          ))}
+        </ul>
+        <a href={talento.cta.href} class="btn btn-oro" style="margin-top:32px;">
+          {talento.cta.texto}
+          <Icon name="arrow-up-right" size={15} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROCESO ==================== -->
+  <section class="seccion seccion-borde">
+    <div class="container">
+      <div class="cabecera-seccion">
+        <div class="up">
+          <p class="eyebrow">{proceso.eyebrow}</p>
+          <h2 class="titulo-seccion">
+            {proceso.titulo}<br />
+            <span class="serif oro-texto">{proceso.tituloAcento}</span>
+          </h2>
+        </div>
+      </div>
+      <div class="pasos" data-stagger>
+        {proceso.pasos.map((p) => (
+          <div class="paso up">
+            <span class="n">{p.numero}</span>
+            <h3>{p.titulo}</h3>
+            <p>{p.texto}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CIERRE ==================== -->
+  <section class="cierre">
+    <div class="container">
+      <p class="eyebrow centro" style="display:flex;justify-content:center;">{cierre.eyebrow}</p>
+      <h2 class="up">
+        {cierre.titulo}{" "}
+        <span class="serif oro-texto">{cierre.tituloAcento}</span>
+      </h2>
+      <p class="up">{cierre.texto}</p>
+      <div class="acciones up">
+        <a href={cierre.cta.href} target="_blank" rel="noopener" class="btn btn-oro btn-grande">
+          {cierre.cta.texto}
+          <Icon name="message-circle" size={16} />
+        </a>
+        <a href={cierre.ctaSecundario.href} class="btn btn-borde btn-grande">
+          {cierre.ctaSecundario.texto}
+          <Icon name="arrow-up-right" size={15} />
+        </a>
+      </div>
+      <div class="mini-datos up">
+        <span>{sitio.telefono}</span>
+        <span>{sitio.correo}</span>
+        <span>{sitio.ciudad}</span>
+      </div>
+    </div>
+  </section>
+</Layout>

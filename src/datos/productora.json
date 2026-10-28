@@ -1,0 +1,177 @@
+{
+  "hero": {
+    "eyebrow": "La productora",
+    "titulo": "Estándar de cine.",
+    "tituloAcento": "ADN de calle.",
+    "texto": "Somos una compañía integral dedicada al entretenimiento para adultos: producimos, distribuimos y abastecemos a la industria. Un solo equipo cubre la cadena completa, desde el concepto hasta la entrega y la comercialización.",
+    "imagen": "/img/consola-produccion.jpg",
+    "imagenSecundaria": "/img/claqueta.jpg",
+    "sello": "MDL · Bogotá · Global",
+    "imagenPrincipal": "/img/equipo-camara-top.jpg"
+  },
+  "manifiesto": {
+    "eyebrow": "Manifiesto",
+    "titulo": "Lo sugerente vende más.",
+    "tituloAcento": "Lo bien hecho, perdura.",
+    "parrafos": [
+      "Nacimos en 2019 haciendo contenido para una industria que casi nadie sabía producir con estándar. Empezamos con una cámara, una idea clara y la convicción de que el entretenimiento para adultos merecía la misma exigencia técnica que una campaña de moda.",
+      "Hoy operamos como productora, distribuidora y proveedor integral: equipos de filmación, vestuario, utilería, bienestar y vinilos. Lo que no tenemos, lo conseguimos. Lo que entregamos, cumple.",
+      "Trabajamos con marcas, plataformas, distribuidores y talentos en Colombia y el exterior. Cada proyecto se documenta, se contrata y se protege. Sin atajos."
+    ],
+    "cita": "La imagen es el negocio. La confianza es el activo.",
+    "firma": "Dirección MDL"
+  },
+  "cifras": [
+    {
+      "valor": 120,
+      "sufijo": "+",
+      "etiqueta": "Producciones entregadas"
+    },
+    {
+      "valor": 12,
+      "sufijo": "",
+      "etiqueta": "Países alcanzados"
+    },
+    {
+      "valor": 29.4,
+      "sufijo": "K",
+      "decimales": 1,
+      "etiqueta": "Comunidad orgánica"
+    },
+    {
+      "valor": 7,
+      "sufijo": "",
+      "etiqueta": "Años de operación"
+    }
+  ],
+  "servicios": {
+    "eyebrow": "Qué hacemos",
+    "titulo": "Una cadena completa.",
+    "tituloAcento": "Sin intermediarios.",
+    "items": [
+      {
+        "numero": "01",
+        "titulo": "Producción audiovisual",
+        "texto": "Desarrollo de concepto, guion, casting, dirección, rodaje, edición, color y sonido.",
+        "lista": [
+          "Video premium",
+          "Fotografía editorial",
+          "Contenido vertical",
+          "Backstage"
+        ]
+      },
+      {
+        "numero": "02",
+        "titulo": "Distribución y licencias",
+        "texto": "Colocación de contenido en plataformas y canales, con acuerdos de territorialidad claros.",
+        "lista": [
+          "Distribución global",
+          "Licencias",
+          "Coproducción",
+          "Reportes"
+        ]
+      },
+      {
+        "numero": "03",
+        "titulo": "Comercio e infraestructura",
+        "texto": "Alquiler y venta de equipos, vestuario, utilería, bienestar y vinilos para la industria.",
+        "lista": [
+          "Equipos de cine",
+          "Vestuario y utilería",
+          "Bienestar",
+          "Vinilos y wrap"
+        ]
+      }
+    ]
+  },
+  "infraestructura": {
+    "eyebrow": "Infraestructura",
+    "titulo": "El set completo,",
+    "tituloAcento": "listo para rodar.",
+    "texto": "Mantenemos nuestro propio inventario para no depender de terceros ni de la suerte. Lo que ves en el catálogo es lo que llega al set.",
+    "imagen": "/img/equipo-camara-top.jpg",
+    "grupos": [
+      {
+        "titulo": "Cámara y óptica",
+        "items": [
+          "Sony FX6",
+          "Full frame",
+          "Ópticas cine",
+          "Monitores",
+          "Estabilización"
+        ]
+      },
+      {
+        "titulo": "Luz y grip",
+        "items": [
+          "LED 300D",
+          "Softboxes",
+          "Rebotes",
+          "Trípodes",
+          "Control DMX"
+        ]
+      },
+      {
+        "titulo": "Sonido",
+        "items": [
+          "Lavaliers",
+          "Grabadoras 32 bits",
+          "Boom",
+          "Monitoreo"
+        ]
+      },
+      {
+        "titulo": "Arte y vestuario",
+        "items": [
+          "Lencería editorial",
+          "Disfraces",
+          "Utilería",
+          "Styling",
+          "Maquillaje"
+        ]
+      }
+    ]
+  },
+  "linea": {
+    "eyebrow": "Trayectoria",
+    "titulo": "Siete años.",
+    "tituloAcento": "Una sola dirección.",
+    "hitos": [
+      {
+        "anio": "2019",
+        "titulo": "Nace MDL",
+        "texto": "Primeras producciones propias para plataformas locales."
+      },
+      {
+        "anio": "2021",
+        "titulo": "Set propio",
+        "texto": "Montamos estudio y equipamento para producciones de mayor escala."
+      },
+      {
+        "anio": "2023",
+        "titulo": "Red global",
+        "texto": "Primeros acuerdos de distribución y coproducción internacional."
+      },
+      {
+        "anio": "2025",
+        "titulo": "Ecosistema completo",
+        "texto": "Abrimos catálogo de equipos, vestuario y vinilos para la industria."
+      },
+      {
+        "anio": "2026",
+        "titulo": "29,4K comunidad",
+        "texto": "La marca se consolida como referente de contenido premium en Colombia."
+      }
+    ]
+  },
+  "cierre": {
+    "eyebrow": "Siguiente paso",
+    "titulo": "¿Construimos algo",
+    "tituloAcento": "que dure?",
+    "texto": "Cuéntanos el objetivo. Nosotros armamos el plan, el equipo y el presupuesto.",
+    "cta": {
+      "texto": "Hablemos por WhatsApp",
+      "href": "https://wa.me/573160998998?text=Hola%20MDL%20VINILOCOL%2C%20quiero%20conocer%20m%C3%A1s%20de%20la%20productora."
+    }
+  }
+}

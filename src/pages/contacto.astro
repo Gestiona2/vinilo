@@ -1,0 +1,319 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { conBase, enlace } from "../lib/ruta";
+import dataBase from "../datos/contacto.json";
+import sitioBase from "../datos/sitio.json";
+
+const data = conBase(dataBase);
+const sitio = conBase(sitioBase);
+const { tipos, formularios, canales, faq } = data;
+---
+
+<Layout
+  activa="contacto"
+  titulo="Contacto — MDL VINILOCOL"
+  descripcion="Hablemos de tu proyecto, alianza B2B o aplicación al casting. WhatsApp, correo y Telegram oficiales de MDL Vinilocol."
+  imagen="/img/claqueta.jpg"
+>
+  <section class="cab-pagina">
+    <div class="container">
+      <div class="migas"><a href={enlace("/")}>Inicio</a> <span>/</span> <span>Contacto</span></div>
+      <div class="cab-fila">
+        <div class="up">
+          <p class="eyebrow">{data.eyebrow}</p>
+          <h1>
+            {data.titulo}<br />
+            <span class="serif oro-texto">{data.tituloAcento}</span>
+          </h1>
+        </div>
+        <div class="cab-lado up" style="transition-delay:120ms">
+          <p class="texto-lead" style="font-size:.95rem;">{data.texto}</p>
+          <p class="tiempo"><span class="pulso"></span>{data.tiempos}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion-sm">
+    <div class="container contacto-grid">
+      <aside class="contacto-info up">
+        <p class="eyebrow">Canales directos</p>
+        <div class="canales">
+          {canales.map((c) => (
+            <a class="canal" href={c.href || undefined} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener">
+              <span class="canal-icono"><Icon name={c.icono} size={18} /></span>
+              <span class="canal-txt">
+                <strong>{c.titulo}</strong>
+                <span>{c.texto}</span>
+                <small>{c.nota}</small>
+              </span>
+              {c.href && <Icon name="arrow-up-right" size={14} />}
+            </a>
+          ))}
+        </div>
+
+        <div class="social-bloque">
+          <p class="etiqueta-mini">Síguenos</p>
+          <div class="social-fila">
+            {sitio.redes.map((r) => (
+              <a href={r.href} target="_blank" rel="noopener" aria-label={r.texto}>
+                <Icon name={r.icono} size={17} />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="horario-bloque">
+          <Icon name="clock" size={16} />
+          <div>
+            <strong>Horario de atención</strong>
+            <span>{sitio.horario}</span>
+          </div>
+        </div>
+      </aside>
+
+      <div class="contacto-form up" style="transition-delay:100ms">
+        <div class="pestanas" role="tablist" aria-label="Tipo de contacto">
+          {tipos.map((t, i) => (
+            <button
+              class={`pestana ${i === 0 ? "activo" : ""}`}
+              data-tab={t.id}
+              role="tab"
+              aria-selected={i === 0 ? "true" : "false"}
+            >
+              {t.texto}
+            </button>
+          ))}
+        </div>
+
+        <!-- Cliente -->
+        <div class="panel-form activo" data-panel="cliente">
+          <h2 class="titulo-menor">{formularios.cliente.titulo}</h2>
+          <p class="panel-sub">{formularios.cliente.texto}</p>
+          <form class="form" data-formulario="cliente" novalidate>
+            <div class="campo"><label for="cNombre">{formularios.cliente.campos.nombre}</label><input id="cNombre" name="nombre" type="text" required placeholder="Tu nombre" /></div>
+            <div class="campo"><label for="cMarca">{formularios.cliente.campos.marca}</label><input id="cMarca" name="marca" type="text" placeholder="Marca o empresa" /></div>
+            <div class="campo"><label for="cCorreo">{formularios.cliente.campos.correo}</label><input id="cCorreo" name="correo" type="email" required placeholder="tu@correo.com" /></div>
+            <div class="campo"><label for="cWhats">{formularios.cliente.campos.whatsapp}</label><input id="cWhats" name="whatsapp" type="tel" required placeholder="+57 300 000 0000" /></div>
+            <div class="campo">
+              <label for="cServicio">{formularios.cliente.campos.servicio}</label>
+              <select id="cServicio" name="servicio">
+                <option>Producción de video premium</option>
+                <option>Campaña editorial</option>
+                <option>Fotografía</option>
+                <option>Contenido para redes</option>
+                <option>Alquiler de equipos</option>
+                <option>Vinilos y wrap</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="cPresupuesto">{formularios.cliente.campos.presupuesto}</label>
+              <select id="cPresupuesto" name="presupuesto">
+                <option>Menos de $3.000.000</option>
+                <option>$3.000.000 – $7.000.000</option>
+                <option>$7.000.000 – $15.000.000</option>
+                <option>Más de $15.000.000</option>
+                <option>Por definir</option>
+              </select>
+            </div>
+            <div class="campo ancho"><label for="cMensaje">{formularios.cliente.campos.mensaje}</label><textarea id="cMensaje" name="mensaje" required placeholder="Objetivo, referencias, fechas..."></textarea></div>
+            <label class="check ancho"><input type="checkbox" required /><span>Acepto el tratamiento de mis datos y el aviso de contenido +18.</span></label>
+            <div class="form-pie">
+              <p class="form-aviso">Demo: el formulario no guarda datos. Prepara el mensaje en WhatsApp para que decidas enviarlo.</p>
+              <button class="btn btn-oro" type="submit">{formularios.cliente.boton} <Icon name="arrow-up-right" size={15} /></button>
+            </div>
+          </form>
+          <div class="form-exito" data-exito="cliente">
+            <Icon name="check-circle" size={32} />
+            <h3>Mensaje listo</h3>
+            <p>Abrimos WhatsApp con tu solicitud.</p>
+            <a href="#" target="_blank" rel="noopener" class="btn btn-oro">Abrir WhatsApp <Icon name="message-circle" size={15} /></a>
+          </div>
+        </div>
+
+        <!-- B2B -->
+        <div class="panel-form" data-panel="b2b">
+          <h2 class="titulo-menor">{formularios.b2b.titulo}</h2>
+          <p class="panel-sub">{formularios.b2b.texto}</p>
+          <form class="form" data-formulario="b2b" novalidate>
+            <div class="campo"><label for="bNombre">{formularios.b2b.campos.nombre}</label><input id="bNombre" name="nombre" type="text" required placeholder="Tu nombre" /></div>
+            <div class="campo"><label for="bEmpresa">{formularios.b2b.campos.empresa}</label><input id="bEmpresa" name="empresa" type="text" required placeholder="Empresa" /></div>
+            <div class="campo"><label for="bPais">{formularios.b2b.campos.pais}</label><input id="bPais" name="pais" type="text" required placeholder="País" /></div>
+            <div class="campo"><label for="bCorreo">{formularios.b2b.campos.correo}</label><input id="bCorreo" name="correo" type="email" required placeholder="tu@empresa.com" /></div>
+            <div class="campo"><label for="bWhats">{formularios.b2b.campos.whatsapp}</label><input id="bWhats" name="whatsapp" type="tel" required placeholder="+57 300 000 0000" /></div>
+            <div class="campo">
+              <label for="bInteres">{formularios.b2b.campos.interes}</label>
+              <select id="bInteres" name="interes">
+                <option>Coproducción</option>
+                <option>Distribución de contenido</option>
+                <option>Compra al por mayor</option>
+                <option>Licencias</option>
+                <option>Otra alianza</option>
+              </select>
+            </div>
+            <div class="campo ancho"><label for="bMensaje">{formularios.b2b.campos.mensaje}</label><textarea id="bMensaje" name="mensaje" required placeholder="Mercado, volumen, modelo de negocio..."></textarea></div>
+            <label class="check ancho"><input type="checkbox" required /><span>Acepto el tratamiento de mis datos y el aviso de contenido +18.</span></label>
+            <div class="form-pie">
+              <p class="form-aviso">Demo: el formulario no guarda datos. Prepara el mensaje en WhatsApp para que decidas enviarlo.</p>
+              <button class="btn btn-oro" type="submit">{formularios.b2b.boton} <Icon name="arrow-up-right" size={15} /></button>
+            </div>
+          </form>
+          <div class="form-exito" data-exito="b2b">
+            <Icon name="check-circle" size={32} />
+            <h3>Propuesta lista</h3>
+            <p>Abrimos WhatsApp con tu información.</p>
+            <a href="#" target="_blank" rel="noopener" class="btn btn-oro">Abrir WhatsApp <Icon name="message-circle" size={15} /></a>
+          </div>
+        </div>
+
+        <!-- Talento -->
+        <div class="panel-form" data-panel="talento">
+          <h2 class="titulo-menor">{formularios.talento.titulo}</h2>
+          <p class="panel-sub">{formularios.talento.texto} <a href={enlace("/talento/")} style="color:var(--oro);text-decoration:underline;text-underline-offset:3px;">Ir a la página de talento</a>.</p>
+          <form class="form" data-formulario="talento" novalidate>
+            <div class="campo"><label for="aNombre">{formularios.talento.campos.nombre}</label><input id="aNombre" name="nombre" type="text" required placeholder="Tu nombre" /></div>
+            <div class="campo"><label for="aEdad">{formularios.talento.campos.edad}</label><input id="aEdad" name="edad" type="number" min="18" max="99" required placeholder="18+" /></div>
+            <div class="campo"><label for="aCiudad">{formularios.talento.campos.ciudad}</label><input id="aCiudad" name="ciudad" type="text" required placeholder="Ciudad" /></div>
+            <div class="campo"><label for="aWhats">{formularios.talento.campos.whatsapp}</label><input id="aWhats" name="whatsapp" type="tel" required placeholder="+57 300 000 0000" /></div>
+            <div class="campo ancho"><label for="aPortafolio">{formularios.talento.campos.portafolio}</label><input id="aPortafolio" name="portafolio" type="text" placeholder="@tuinstagram o enlace" /></div>
+            <div class="campo ancho"><label for="aMensaje">{formularios.talento.campos.mensaje}</label><textarea id="aMensaje" name="mensaje" placeholder="Cuéntanos de ti"></textarea></div>
+            <label class="check ancho"><input type="checkbox" required /><span>Confirmo que soy mayor de 18 años y acepto el tratamiento de mis datos.</span></label>
+            <div class="form-pie">
+              <p class="form-aviso">Demo: el formulario no guarda datos. Prepara el mensaje en WhatsApp para que decidas enviarlo.</p>
+              <button class="btn btn-oro" type="submit">{formularios.talento.boton} <Icon name="arrow-up-right" size={15} /></button>
+            </div>
+          </form>
+          <div class="form-exito" data-exito="talento">
+            <Icon name="check-circle" size={32} />
+            <h3>Aplicación lista</h3>
+            <p>Abrimos WhatsApp con tus datos.</p>
+            <a href="#" target="_blank" rel="noopener" class="btn btn-oro">Abrir WhatsApp <Icon name="message-circle" size={15} /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion-borde">
+    <div class="container split">
+      <div class="up">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2 class="titulo-seccion">
+          Antes de<br />
+          <span class="serif oro-texto">escribir.</span>
+        </h2>
+        <p class="texto-lead" style="margin-top:20px;">Si tu duda no está aquí, escríbenos por WhatsApp. Respondemos rápido y sin vueltas.</p>
+        <a href={sitio.ctaPrincipal.href} target="_blank" rel="noopener" class="btn btn-borde" style="margin-top:26px;">
+          Preguntar por WhatsApp <Icon name="message-circle" size={15} />
+        </a>
+      </div>
+      <div class="faq up" style="transition-delay:120ms">
+        {faq.map((f) => (
+          <details class="faq-item">
+            <summary>{f.p}<span class="mas">+</span></summary>
+            <p>{f.r}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const pestanas = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-tab]"));
+    const paneles = Array.from(document.querySelectorAll<HTMLElement>("[data-panel]"));
+
+    function activarTab(id: string) {
+      pestanas.forEach((p) => {
+        const on = p.dataset.tab === id;
+        p.classList.toggle("activo", on);
+        p.setAttribute("aria-selected", String(on));
+      });
+      paneles.forEach((panel) => panel.classList.toggle("activo", panel.dataset.panel === id));
+    }
+
+    pestanas.forEach((p) => p.addEventListener("click", () => activarTab(p.dataset.tab || "cliente")));
+
+    const params = new URLSearchParams(window.location.search);
+    const tipo = params.get("tipo");
+    if (tipo && ["cliente", "b2b", "talento"].includes(tipo)) activarTab(tipo);
+
+    const nombres: Record<string, string> = {
+      cliente: "solicitud de proyecto",
+      b2b: "propuesta de alianza B2B",
+      talento: "aplicación al casting",
+    };
+
+    document.querySelectorAll<HTMLFormElement>("[data-formulario]").forEach((form) => {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        const tipoForm = form.dataset.formulario || "cliente";
+        const datos = new FormData(form);
+        const lineas: string[] = [`Hola MDL VINILOCOL, envío esta ${nombres[tipoForm]}:`, ""];
+        datos.forEach((valor, llave) => {
+          if (typeof valor === "string" && valor.trim()) {
+            const etiqueta = llave.charAt(0).toUpperCase() + llave.slice(1);
+            lineas.push(`${etiqueta}: ${valor.trim()}`);
+          }
+        });
+        lineas.push("", "Confirmo que soy mayor de 18 años y acepto el tratamiento de mis datos.");
+        const url = `https://wa.me/573160998998?text=${encodeURIComponent(lineas.join("\n"))}`;
+        const exito = document.querySelector<HTMLElement>(`[data-exito="${tipoForm}"]`);
+        const enlace = exito?.querySelector("a");
+        if (enlace) enlace.setAttribute("href", url);
+        form.style.display = "none";
+        exito?.classList.add("visible");
+        window.open(url, "_blank", "noopener");
+      });
+    });
+  </script>
+
+  <style>
+    .tiempo { display: flex; align-items: center; gap: 9px; margin-top: 18px; font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; color: var(--oro); }
+    .pulso { width: 6px; height: 6px; border-radius: 50%; background: var(--oro); animation: pulso 2.2s infinite; }
+
+    .contacto-grid { display: grid; grid-template-columns: 0.78fr 1.22fr; gap: clamp(36px, 5vw, 70px); align-items: start; }
+    .contacto-info { position: sticky; top: calc(var(--nav-alto) + 30px); }
+    .canales { display: flex; flex-direction: column; border-top: 1px solid var(--linea); }
+    .canal { display: flex; align-items: center; gap: 15px; padding: 18px 0; border-bottom: 1px solid var(--linea); transition: padding-left .35s; }
+    .canal:hover { padding-left: 8px; }
+    .canal-icono { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--linea); color: var(--oro); flex: none; }
+    .canal-txt { display: flex; flex-direction: column; flex: 1; }
+    .canal-txt strong { font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; color: var(--texto-mudo); font-weight: 700; }
+    .canal-txt span { font-size: .92rem; color: var(--marfil); margin-top: 2px; }
+    .canal-txt small { font-size: .66rem; color: var(--texto-mudo); margin-top: 2px; }
+    .canal > :global(svg) { color: var(--texto-mudo); flex: none; }
+
+    .social-bloque { margin-top: 28px; }
+    .etiqueta-mini { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--texto-mudo); margin-bottom: 12px; }
+    .social-fila { display: flex; gap: 9px; }
+    .social-fila a { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--linea); display: grid; place-items: center; color: var(--texto-suave); transition: .3s; }
+    .social-fila a:hover { color: var(--oro); border-color: var(--linea-fuerte); transform: translateY(-2px); }
+
+    .horario-bloque { display: flex; gap: 10px; align-items: flex-start; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--linea); color: var(--texto-mudo); }
+    .horario-bloque :global(svg) { color: var(--oro); flex: none; margin-top: 2px; }
+    .horario-bloque strong { display: block; font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; color: var(--texto-mudo); }
+    .horario-bloque span { font-size: .8rem; color: var(--texto-suave); }
+
+    .contacto-form { border: 1px solid var(--linea); border-radius: 20px; padding: clamp(24px, 3.4vw, 40px); background: linear-gradient(160deg, rgba(255,255,255,.025), transparent 55%); }
+    .panel-form { display: none; }
+    .panel-form.activo { display: block; animation: aparecerPanel .5s ease both; }
+    @keyframes aparecerPanel { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .panel-sub { font-size: .84rem; color: var(--texto-mudo); margin: 8px 0 26px; }
+
+    .faq { border-top: 1px solid var(--linea); }
+    .faq-item { border-bottom: 1px solid var(--linea); }
+    .faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px 0; cursor: pointer; font-family: var(--font-display); font-size: 1.02rem; letter-spacing: -.02em; list-style: none; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary .mas { font-family: var(--font-body); color: var(--oro); font-size: 1.3rem; transition: transform .35s; }
+    .faq-item[open] summary .mas { transform: rotate(45deg); }
+    .faq-item p { font-size: .85rem; color: var(--texto-mudo); line-height: 1.7; padding: 0 30px 20px 0; }
+
+    @media (max-width: 960px) {
+      .contacto-grid { grid-template-columns: 1fr; }
+      .contacto-info { position: static; }
+    }
+  </style>
+</Layout>

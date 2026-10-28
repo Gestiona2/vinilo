@@ -1,0 +1,73 @@
+---
+import sitioBase from "../datos/sitio.json";
+import { conBase, enlace, ruta } from "../lib/ruta";
+import Icon from "./Icon.astro";
+
+const sitio = conBase(sitioBase);
+interface Props {
+  activa?: string;
+}
+const { activa = "" } = Astro.props;
+const wa = sitio.ctaPrincipal.href;
+---
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href={enlace("/")} class="marca" aria-label={`${sitio.nombre} — inicio`}>
+      <img src={ruta("/brand/monograma.png")} alt="" class="marca-mono" width="90" height="36" />
+      <span class="marca-txt">
+        <strong>VINILOCOL</strong>
+        <span>Colombia · SAS</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Principal">
+      {sitio.menu.map((item) => (
+        <a href={item.href} class={activa === item.id ? "activo" : ""} aria-current={activa === item.id ? "page" : undefined}>
+          {item.texto}
+        </a>
+      ))}
+    </nav>
+
+    <div class="nav-acciones">
+      <a href={sitio.redes[0].href} target="_blank" rel="noopener" class="nav-red" aria-label="Instagram de MDL Vinilocol">
+        <Icon name="instagram" size={17} />
+      </a>
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-oro btn-sm nav-cta">
+        Cotizar
+        <Icon name="arrow-up-right" size={14} />
+      </a>
+      <button class="nav-burger" id="botonMenu" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuMovil">
+        <Icon name="menu" size={20} />
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu-movil" id="menuMovil" aria-hidden="true">
+  <nav aria-label="Menú móvil">
+    {sitio.menu.map((item, i) => (
+      <a href={item.href} class="enlace-menu">
+        <span>{String(i + 1).padStart(2, "0")}</span>
+        {item.texto}
+      </a>
+    ))}
+  </nav>
+  <div class="menu-movil-pie">
+    <div>
+      <p style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--texto-mudo);margin-bottom:6px;">Contacto directo</p>
+      <a href={`tel:+${sitio.whatsapp}`} style="font-family:var(--font-display);font-size:1.15rem;color:var(--oro-claro)">{sitio.telefono}</a>
+    </div>
+    <div class="redes">
+      {sitio.redes.map((r) => (
+        <a class="nav-red" href={r.href} target="_blank" rel="noopener" aria-label={r.texto}>
+          <Icon name={r.icono} size={17} />
+        </a>
+      ))}
+    </div>
+  </div>
+  <a href={wa} target="_blank" rel="noopener" class="btn btn-oro" style="margin-top:26px;">
+    {sitio.ctaPrincipal.texto}
+    <Icon name="arrow-up-right" size={15} />
+  </a>
+</div>

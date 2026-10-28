@@ -1,0 +1,49 @@
+---
+import Icon from "./Icon.astro";
+import { enlace, ruta } from "../lib/ruta";
+---
+
+<div class="porton" id="porton" role="dialog" aria-modal="true" aria-labelledby="porton-titulo">
+  <div class="porton-caja">
+    <img src={ruta("/brand/logo.png")} alt="MDL Vinilocol" class="porton-logo" width="220" height="168" />
+    <span class="porton-sello"><b>18+</b> Contenido para adultos</span>
+    <h1 id="porton-titulo">Antes de entrar,<br /><span class="serif oro-texto">una pregunta.</span></h1>
+    <p>Este sitio está dirigido a personas mayores de 18 años. Al continuar confirmas tu edad y aceptas nuestros términos de uso.</p>
+    <div class="porton-acciones">
+      <button class="btn btn-oro btn-grande" id="entrarMayor" type="button">
+        Soy mayor de 18 años
+        <Icon name="arrow-right" size={15} />
+      </button>
+      <button class="btn btn-borde" id="salirMenor" type="button">No, salir del sitio</button>
+    </div>
+    <p class="porton-legal">Si eres menor de edad, abandona este sitio. <a href={enlace("/legal/#contenido")}>Más información</a></p>
+  </div>
+</div>
+
+<script>
+  const llave = "mdl-edad";
+
+  function cerrarPorton() {
+    const porton = document.getElementById("porton");
+    if (!porton) return;
+    porton.classList.add("saliendo");
+    document.documentElement.setAttribute("data-edad", "ok");
+    window.setTimeout(() => porton.remove(), 750);
+  }
+
+  const entrar = document.getElementById("entrarMayor");
+  const salir = document.getElementById("salirMenor");
+
+  entrar?.addEventListener("click", () => {
+    try { sessionStorage.setItem(llave, "ok"); } catch (e) {}
+    cerrarPorton();
+  });
+
+  salir?.addEventListener("click", () => {
+    window.location.replace("https://www.google.com");
+  });
+
+  if (document.documentElement.getAttribute("data-edad") === "ok") {
+    document.getElementById("porton")?.remove();
+  }
+</script>

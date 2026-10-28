@@ -1,0 +1,71 @@
+---
+import sitioBase from "../datos/sitio.json";
+import { conBase, enlace, ruta } from "../lib/ruta";
+import Icon from "./Icon.astro";
+
+const sitio = conBase(sitioBase);
+const anio = new Date().getFullYear();
+const wa = sitio.ctaPrincipal.href;
+---
+
+<footer class="pie">
+  <div class="container">
+    <div class="pie-top">
+      <div class="pie-marca">
+        <img src={ruta("/brand/logo.png")} alt={`Logo de ${sitio.nombre}`} class="marca-mono" width="180" height="137" loading="lazy" />
+        <p>{sitio.descripcion}</p>
+        <div class="pie-redes">
+          {sitio.redes.map((r) => (
+            <a href={r.href} target="_blank" rel="noopener" aria-label={r.texto}>
+              <Icon name={r.icono} size={16} />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="pie-col">
+        <h4>Explora</h4>
+        <ul>
+          {sitio.menu.map((item) => (
+            <li><a href={item.href}>{item.texto}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="pie-col">
+        <h4>Líneas</h4>
+        <ul>
+          <li><a href={enlace("/productora/")}>Producción audiovisual</a></li>
+          <li><a href={enlace("/contacto/?tipo=b2b")}>Distribución B2B</a></li>
+          <li><a href={enlace("/catalogo/")}>Equipos y catálogo</a></li>
+          <li><a href={enlace("/catalogo/")}>Vestuario y bienestar</a></li>
+          <li><a href={enlace("/catalogo/")}>Vinilos y wrap</a></li>
+          <li><a href={enlace("/talento/")}>Casting</a></li>
+        </ul>
+      </div>
+
+      <div class="pie-col pie-contacto">
+        <h4>Contacto</h4>
+        <ul>
+          <li><Icon name="message-circle" size={14} /><a href={wa} target="_blank" rel="noopener">{sitio.telefono}</a></li>
+          <li><Icon name="mail" size={14} /><a href={`mailto:${sitio.correo}`}>{sitio.correo}</a></li>
+          <li><Icon name="map-pin" size={14} /><span>{sitio.ciudad}</span></li>
+          <li><Icon name="clock" size={14} /><span>{sitio.horario}</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pie-legal">
+      <div class="links">
+        <a href={enlace("/legal/#contenido")}>Contenido +18</a>
+        <a href={enlace("/legal/#terminos")}>Términos</a>
+        <a href={enlace("/legal/#privacidad")}>Privacidad</a>
+        <a href={enlace("/legal/#pagos")}>Pagos y devoluciones</a>
+      </div>
+      <span class="pie-sello"><b>+18</b> Solo adultos</span>
+      <p>© {anio} {sitio.razonSocial}. Todos los derechos reservados.</p>
+    </div>
+    <p class="pie-demostracion">{sitio.demo}</p>
+  </div>
+  <div class="pie-marca-agua" aria-hidden="true">VINILOCOL</div>
+</footer>

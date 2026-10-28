@@ -1,0 +1,278 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import Sello from "../components/Sello.astro";
+import { conBase, enlace, ruta } from "../lib/ruta";
+import dataBase from "../datos/talento.json";
+
+const data = conBase(dataBase);
+const { hero, beneficios, requisitos, proceso, formulario } = data;
+---
+
+<Layout
+  activa="talento"
+  titulo="Trabaja con nosotros — Casting | MDL VINILOCOL"
+  descripcion="Casting abierto para modelos y creadores de contenido. Sets seguros, contrato claro, pago justo y distribución internacional."
+  imagen="/img/editorial-amarillo.jpg"
+>
+  <section class="cab-pagina">
+    <div class="container cab-fila">
+      <div class="up">
+        <div class="migas"><a href={enlace("/")}>Inicio</a> <span>/</span> <span>Talento</span></div>
+        <p class="eyebrow">{hero.eyebrow}</p>
+        <h1>
+          {hero.titulo}<br />
+          <span class="serif oro-texto">{hero.tituloAcento}</span>
+        </h1>
+        <p class="texto-lead">{hero.texto}</p>
+        <div class="hero-acciones" style="opacity:1;animation:none;">
+          <a href="#aplicar" class="btn btn-oro">Aplicar al casting <Icon name="arrow-right" size={15} /></a>
+          <a href="#beneficios" class="btn btn-borde">Cómo funciona <Icon name="chevron-down" size={15} /></a>
+        </div>
+      </div>
+      <div class="hero-retratos up" style="transition-delay:120ms">
+        <div class="retrato-grande">
+          <img src={hero.imagen} alt="Modelo en producción editorial" loading="eager" />
+        </div>
+        <div class="retrato-pequeno">
+          <img src={hero.imagenSecundaria} alt="Retrato de estudio" loading="lazy" />
+        </div>
+        <span class="sello-casting"><Sello centro="2026" texto="CASTING ABIERTO · MDL VINILOCOL ·" /></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion-borde" id="beneficios">
+    <div class="container">
+      <div class="cabecera-seccion">
+        <div class="up">
+          <p class="eyebrow">{beneficios.eyebrow}</p>
+          <h2 class="titulo-seccion">
+            {beneficios.titulo}<br />
+            <span class="serif oro-texto">{beneficios.tituloAcento}</span>
+          </h2>
+        </div>
+        <div class="acciones up" style="transition-delay:100ms">
+          <p class="texto-mudo" style="font-size:.9rem;max-width:42ch;">{beneficios.texto}</p>
+        </div>
+      </div>
+      <div class="beneficios-grid" data-stagger>
+        {beneficios.items.map((b) => (
+          <div class="beneficio up">
+            <span class="icono"><Icon name={b.icono} size={22} /></span>
+            <h3>{b.titulo}</h3>
+            <p>{b.texto}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="container split">
+      <div class="up">
+        <p class="eyebrow">{requisitos.eyebrow}</p>
+        <h2 class="titulo-seccion">
+          {requisitos.titulo}<br />
+          <span class="serif oro-texto">{requisitos.tituloAcento}</span>
+        </h2>
+        <ul class="requisitos">
+          {requisitos.items.map((r) => <li><Icon name="check" size={15} />{r}</li>)}
+        </ul>
+        <div class="aviso-casting">
+          <Icon name="shield-check" size={20} />
+          <p>{requisitos.nota}</p>
+        </div>
+      </div>
+      <div class="up" style="transition-delay:120ms">
+        <div class="foto-marco alta">
+          <img src={ruta("/img/retrato-marco.jpg")} alt="Retrato de estudio de una modelo" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion-borde">
+    <div class="container">
+      <div class="cabecera-seccion">
+        <div class="up">
+          <p class="eyebrow">{proceso.eyebrow}</p>
+          <h2 class="titulo-seccion">
+            {proceso.titulo}<br />
+            <span class="serif oro-texto">{proceso.tituloAcento}</span>
+          </h2>
+        </div>
+      </div>
+      <div class="pasos" data-stagger>
+        {proceso.pasos.map((p) => (
+          <div class="paso up">
+            <span class="n">{p.numero}</span>
+            <h3>{p.titulo}</h3>
+            <p>{p.texto}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="aplicar">
+    <div class="container split split-desigual">
+      <div class="up">
+        <p class="eyebrow">Aplicación</p>
+        <h2 class="titulo-seccion">
+          Da el<br />
+          <span class="serif oro-texto">primer paso.</span>
+        </h2>
+        <p class="texto-lead" style="margin-top:22px;">{formulario.texto}</p>
+        <div class="datos-aplicar">
+          <div><Icon name="clock" size={18} /><span><b>5 días</b> hábiles de respuesta</span></div>
+          <div><Icon name="lock" size={18} /><span><b>Confidencial</b> tus datos no se publican</span></div>
+          <div><Icon name="wallet" size={18} /><span><b>Sin costo</b> nunca cobramos por casting</span></div>
+        </div>
+      </div>
+
+      <div class="form-card up" style="transition-delay:120ms">
+        <form class="form" id="formTalento" novalidate>
+          <div class="campo">
+            <label for="tNombre">{formulario.campos.nombre}</label>
+            <input id="tNombre" name="nombre" type="text" required placeholder="Tu nombre" />
+          </div>
+          <div class="campo">
+            <label for="tAlias">{formulario.campos.alias}</label>
+            <input id="tAlias" name="alias" type="text" placeholder="Nombre artístico" />
+          </div>
+          <div class="campo">
+            <label for="tEdad">{formulario.campos.edad}</label>
+            <input id="tEdad" name="edad" type="number" min="18" max="99" required placeholder="18+" />
+          </div>
+          <div class="campo">
+            <label for="tCiudad">{formulario.campos.ciudad}</label>
+            <input id="tCiudad" name="ciudad" type="text" required placeholder="Ciudad" />
+          </div>
+          <div class="campo">
+            <label for="tWhatsapp">{formulario.campos.whatsapp}</label>
+            <input id="tWhatsapp" name="whatsapp" type="tel" required placeholder="+57 300 000 0000" />
+          </div>
+          <div class="campo">
+            <label for="tCorreo">{formulario.campos.correo}</label>
+            <input id="tCorreo" name="correo" type="email" required placeholder="tu@correo.com" />
+          </div>
+          <div class="campo ancho">
+            <label for="tPortafolio">{formulario.campos.portafolio}</label>
+            <input id="tPortafolio" name="portafolio" type="text" placeholder="@tuinstagram o enlace" />
+          </div>
+          <div class="campo ancho">
+            <label for="tExperiencia">{formulario.campos.experiencia}</label>
+            <select id="tExperiencia" name="experiencia">
+              <option value="Sin experiencia">Sin experiencia (primera vez)</option>
+              <option value="Menos de 1 año">Menos de 1 año</option>
+              <option value="1 a 3 años">1 a 3 años</option>
+              <option value="Más de 3 años">Más de 3 años</option>
+            </select>
+          </div>
+          <div class="campo ancho">
+            <label for="tMensaje">{formulario.campos.mensaje}</label>
+            <textarea id="tMensaje" name="mensaje" placeholder="Cuéntanos qué te gustaría hacer, tu disponibilidad y tus límites."></textarea>
+          </div>
+          <label class="check ancho" style="grid-column:1/-1;">
+            <input type="checkbox" id="tAcepta" required />
+            <span>{formulario.nota}</span>
+          </label>
+          <div class="form-pie">
+            <p class="form-aviso">Demo: el formulario no guarda datos en un servidor. Prepara un mensaje de WhatsApp para que decidas enviarlo.</p>
+            <button class="btn btn-oro" type="submit">{formulario.boton} <Icon name="arrow-up-right" size={15} /></button>
+          </div>
+        </form>
+
+        <div class="form-exito" id="exitoTalento">
+          <Icon name="check-circle" size={34} />
+          <h3>Aplicación lista</h3>
+          <p>Abrimos WhatsApp con tus datos. Envíalo para que el equipo de casting lo reciba.</p>
+          <a href="#" id="waTalento" target="_blank" rel="noopener" class="btn btn-oro">
+            Abrir WhatsApp <Icon name="message-circle" size={15} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById("formTalento") as HTMLFormElement | null;
+    const exito = document.getElementById("exitoTalento");
+    const waLink = document.getElementById("waTalento") as HTMLAnchorElement | null;
+
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const campos = new FormData(form);
+      const acepta = document.getElementById("tAcepta") as HTMLInputElement | null;
+      if (!form.checkValidity() || !acepta?.checked) {
+        form.reportValidity();
+        return;
+      }
+      const texto = [
+        "Hola MDL VINILOCOL, quiero aplicar al casting:",
+        "",
+        `Nombre: ${campos.get("nombre")}`,
+        `Nombre artístico: ${campos.get("alias") || "—"}`,
+        `Edad: ${campos.get("edad")}`,
+        `Ciudad: ${campos.get("ciudad")}`,
+        `WhatsApp: ${campos.get("whatsapp")}`,
+        `Correo: ${campos.get("correo")}`,
+        `Portafolio: ${campos.get("portafolio") || "—"}`,
+        `Experiencia: ${campos.get("experiencia")}`,
+        `Mensaje: ${campos.get("mensaje") || "—"}`,
+        "",
+        "Confirmo que soy mayor de 18 años y acepto el tratamiento de mis datos.",
+      ].join("\n");
+      if (waLink) {
+        waLink.href = `https://wa.me/573160998998?text=${encodeURIComponent(texto)}`;
+        waLink.click();
+      }
+      form.style.display = "none";
+      exito?.classList.add("visible");
+    });
+  </script>
+
+  <style>
+    .cab-pagina { padding-bottom: 90px; }
+    .hero-retratos { position: relative; width: min(100%, 430px); justify-self: end; padding: 0 0 46px 46px; }
+    .retrato-grande { overflow: hidden; border-radius: 200px 200px 14px 14px; border: 1px solid var(--linea-fuerte); aspect-ratio: 3/3.9; }
+    .retrato-grande img { width: 100%; height: 100%; object-fit: cover; }
+    .retrato-pequeno { position: absolute; left: 0; bottom: 0; width: 44%; aspect-ratio: 3/4; overflow: hidden; border: 7px solid var(--negro); border-radius: 10px; transform: rotate(-6deg); box-shadow: 0 26px 50px -20px #000; }
+    .retrato-pequeno img { width: 100%; height: 100%; object-fit: cover; }
+    .sello-casting { position: absolute; right: -18px; top: 34px; width: 108px; height: 108px; }
+
+    .beneficios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--linea); border: 1px solid var(--linea); border-radius: 16px; overflow: hidden; }
+    .beneficio { padding: 30px 26px; background: var(--tinta); transition: background .4s; }
+    .beneficio:hover { background: #16120c; }
+    .beneficio .icono { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--linea-fuerte); color: var(--oro); margin-bottom: 18px; }
+    .beneficio h3 { font-size: 1.02rem; font-weight: 600; margin-bottom: 7px; }
+    .beneficio p { font-size: .8rem; color: var(--texto-mudo); line-height: 1.6; }
+
+    .requisitos { display: flex; flex-direction: column; gap: 15px; margin-top: 28px; }
+    .requisitos li { display: flex; align-items: flex-start; gap: 11px; font-size: .9rem; color: var(--texto-suave); line-height: 1.55; }
+    .requisitos li :global(svg) { color: var(--oro); flex: none; margin-top: 4px; }
+    .aviso-casting { display: flex; gap: 12px; align-items: flex-start; margin-top: 30px; padding: 18px; border: 1px solid var(--linea); border-radius: 12px; background: rgba(227,178,92,.04); }
+    .aviso-casting :global(svg) { color: var(--oro); flex: none; margin-top: 2px; }
+    .aviso-casting p { font-size: .78rem; color: var(--texto-mudo); line-height: 1.6; }
+
+    .datos-aplicar { display: flex; flex-direction: column; gap: 14px; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--linea); }
+    .datos-aplicar > div { display: flex; align-items: center; gap: 10px; font-size: .78rem; color: var(--texto-mudo); }
+    .datos-aplicar :global(svg) { color: var(--oro); flex: none; }
+    .datos-aplicar b { color: var(--texto); font-weight: 700; }
+
+    .form-card { padding: 30px; border: 1px solid var(--linea); border-radius: 18px; background: linear-gradient(160deg, rgba(255,255,255,.025), transparent 60%); }
+    .form-card .check a { color: var(--texto-suave); }
+
+    @media (max-width: 960px) {
+      .beneficios-grid { grid-template-columns: 1fr 1fr; }
+      .hero-retratos { justify-self: start; margin-top: 24px; }
+    }
+    @media (max-width: 640px) {
+      .beneficios-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 22px 18px; }
+      .hero-retratos { width: 100%; padding-left: 30px; }
+      .sello-casting { width: 88px; height: 88px; right: 0; }
+    }
+  </style>
+</Layout>

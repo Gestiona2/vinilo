@@ -1,0 +1,66 @@
+{
+  "hero": {
+    "eyebrow": "Trabaja con nosotros",
+    "titulo": "Tu imagen.",
+    "tituloAcento": "Nuestro estándar.",
+    "texto": "Buscamos modelos y creadores de contenido con presencia, disciplina y ganas de construir una carrera. Nosotros ponemos el set, la dirección, la protección legal y la distribución.",
+    "imagen": "/img/editorial-amarillo.jpg",
+    "imagenSecundaria": "/img/retrato-marco.jpg",
+    "sello": "Casting abierto 2026"
+  },
+  "beneficios": {
+    "eyebrow": "Por qué MDL",
+    "titulo": "Profesionalismo",
+    "tituloAcento": "en cada detalle.",
+    "texto": "Un casting no es una promesa. Es un proceso claro, con condiciones acordadas por escrito y un equipo que respeta tu imagen y tus límites.",
+    "items": [
+      { "icono": "wallet", "titulo": "Pago justo y puntual", "texto": "Tarifas acordadas antes de rodar y pago dentro de los plazos pactados." },
+      { "icono": "shield-check", "titulo": "Sets seguros y privados", "texto": "Locaciones controladas, equipo reducido y protocolos de seguridad en set." },
+      { "icono": "file-signature", "titulo": "Contrato y consentimiento", "texto": "Todo por escrito: alcance, uso de imagen, límites y duración de la licencia." },
+      { "icono": "sparkles", "titulo": "Dirección de imagen", "texto": "Styling, maquillaje y dirección para que tu portafolio suba de nivel." },
+      { "icono": "globe", "titulo": "Distribución internacional", "texto": "Tu contenido llega a plataformas y territorios con acuerdos formales." },
+      { "icono": "lock", "titulo": "Confidencialidad", "texto": "Manejo discreto de tus datos y control sobre lo que se publica." }
+    ]
+  },
+  "requisitos": {
+    "eyebrow": "Requisitos",
+    "titulo": "Lo que necesitamos",
+    "tituloAcento": "para conocerte.",
+    "items": [
+      "Ser mayor de 18 años, con documento verificable.",
+      "Disponibilidad para rodajes en Bogotá o desplazamiento nacional.",
+      "Portafolio o fotos recientes (no profesionales también sirven).",
+      "Actitud profesional y comunicación clara.",
+      "Consentimiento firmado para el uso de imagen según el proyecto."
+    ],
+    "nota": "No cobramos por casting ni por representación. Si alguien te pide dinero a nombre de MDL, repórtalo a nuestro WhatsApp oficial."
+  },
+  "proceso": {
+    "eyebrow": "Proceso",
+    "titulo": "De la aplicación",
+    "tituloAcento": "al set.",
+    "pasos": [
+      { "numero": "01", "titulo": "Aplicas", "texto": "Déjanos tus datos y un enlace a tu portafolio o redes." },
+      { "numero": "02", "titulo": "Revisión", "texto": "El equipo de casting revisa tu perfil y te contacta si hay match." },
+      { "numero": "03", "titulo": "Entrevista", "texto": "Conversamos sobre intereses, límites, tarifas y próximos proyectos." },
+      { "numero": "04", "titulo": "Primera producción", "texto": "Firmamos condiciones y agendamos tu primera sesión con acompañamiento." }
+    ]
+  },
+  "formulario": {
+    "titulo": "Aplica al casting",
+    "texto": "Cuéntanos lo esencial. Si hay match, te escribimos por WhatsApp en un máximo de 5 días hábiles.",
+    "boton": "Enviar aplicación",
+    "nota": "Al enviar aceptas ser mayor de 18 años y el tratamiento de tus datos para procesos de selección.",
+    "campos": {
+      "nombre": "Nombre completo",
+      "alias": "Nombre artístico (opcional)",
+      "edad": "Edad",
+      "ciudad": "Ciudad",
+      "whatsapp": "WhatsApp",
+      "correo": "Correo electrónico",
+      "portafolio": "Instagram o portafolio",
+      "experiencia": "Experiencia",
+      "mensaje": "Cuéntanos de ti"
+    }
+  }
+}

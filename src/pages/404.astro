@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { enlace } from "../lib/ruta";
+---
+
+<Layout titulo="Página no encontrada — MDL VINILOCOL" noIndex>
+  <section class="cuatro">
+    <div class="container centro">
+      <p class="eyebrow" style="justify-content:center;">Error 404</p>
+      <h1 class="cuatro-num">4<span class="serif oro-texto">0</span>4</h1>
+      <h2>Esta toma no existe.</h2>
+      <p class="texto-lead" style="margin:0 auto 32px;">La página que buscas se movió o nunca estuvo aquí. Volvamos al set.</p>
+      <div class="acciones" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href={enlace("/")} class="btn btn-oro">Volver al inicio <Icon name="arrow-right" size={15} /></a>
+        <a href={enlace("/portafolio/")} class="btn btn-borde">Ver portafolio <Icon name="play" size={14} /></a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .cuatro { min-height: 100svh; display: grid; place-items: center; padding: calc(var(--nav-alto) + 60px) 0 80px; position: relative; overflow: hidden; }
+    .cuatro::before { content: ""; position: absolute; width: 70vw; height: 70vw; border-radius: 50%; left: 50%; top: 42%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(227,178,92,.12), transparent 60%); pointer-events: none; }
+    .cuatro .container { position: relative; z-index: 2; }
+    .cuatro-num { font-size: clamp(8rem, 30vw, 24rem); line-height: .8; letter-spacing: -.06em; margin: 10px 0 18px; }
+    .cuatro h2 { font-size: clamp(1.6rem, 4vw, 3rem); margin-bottom: 14px; }
+    .cuatro p { max-width: 42ch; }
+  </style>
+</Layout>

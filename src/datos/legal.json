@@ -1,0 +1,44 @@
+{
+  "eyebrow": "Información legal",
+  "titulo": "Reglas claras.",
+  "tituloAcento": "Para todos.",
+  "texto": "Este sitio es una demostración comercial. Los textos legales siguientes son un modelo de referencia y deben ser revisados por el abogado del cliente antes de publicar.",
+  "secciones": [
+    {
+      "id": "contenido",
+      "titulo": "Contenido para adultos",
+      "parrafos": [
+        "MDL Vinilo Colombia es una productora y comercializadora que atiende a la industria del entretenimiento para adultos. El acceso a este sitio está restringido a personas mayores de 18 años.",
+        "El sitio no publica material sexual explícito. El portafolio muestra referencias visuales, metadatos y descripciones de producción; el material completo se comparte bajo solicitud, verificación de edad y acuerdo de confidencialidad.",
+        "Si eres menor de edad, debes abandonar este sitio de inmediato."
+      ]
+    },
+    {
+      "id": "terminos",
+      "titulo": "Términos y condiciones",
+      "parrafos": [
+        "El uso de este sitio implica la aceptación de estos términos. La información comercial, precios y disponibilidad están sujetos a confirmación por parte de MDL Vinilo Colombia SAS.",
+        "Los contenidos, marcas, fotografías y piezas audiovisuales son propiedad de sus titulares y no pueden reproducirse sin autorización escrita.",
+        "Los servicios de producción se rigen por contrato específico. Los productos del catálogo se rigen por las condiciones de venta informadas al momento de la compra."
+      ]
+    },
+    {
+      "id": "privacidad",
+      "titulo": "Política de privacidad",
+      "parrafos": [
+        "Los datos que compartes en los formularios se usan únicamente para responder tu solicitud, evaluar aplicaciones de casting o gestionar una relación comercial. No se venden ni se comparten con terceros sin tu autorización.",
+        "Puedes solicitar la actualización o eliminación de tus datos escribiendo a hola@mdlvinilocol.com.",
+        "En esta demostración, los formularios no almacenan datos en un servidor: preparan un mensaje de WhatsApp que tú decides enviar."
+      ]
+    },
+    {
+      "id": "pagos",
+      "titulo": "Pagos y devoluciones",
+      "parrafos": [
+        "En la versión de producción, los pagos se procesan mediante pasarelas certificadas. MDL Vinilo Colombia no almacena datos de tarjetas.",
+        "Los productos de bienestar y vestuario son de uso personal y no admiten devolución por razones sanitarias, salvo defecto de fábrica.",
+        "Los servicios de producción y alquiler se rigen por el contrato y la política de cancelación acordada."
+      ]
+    }
+  ]
+}
